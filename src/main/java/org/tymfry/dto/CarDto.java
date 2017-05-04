@@ -6,20 +6,20 @@ import org.tymfry.entity.Car.TypeOfFuel;
 public class CarDto {
 
 	private Integer id;
-	private Long vin;
-	private int yearOfProduction;
+	private String vin;
+	private String yearOfProduction;
 	private String brand;
 	private String model;
-	private Long insurancePolicyNumber;
+	private String insurancePolicyNumber;
 	private String registrationNumber;
 	private TypeOfFuel typeOfFuel;
-	private int mileage;
-	private int ccm;
-	private int horsePower;
+	private String mileage;
+	private String ccm;
+	private String horsePower;
 	private Gearbox gearbox;
 	private String description;
-	private int numberOfTestDrives;
-	private double value;
+	private String numberOfTestDrives;
+	private String value;
 
 	public Integer getId() {
 		return id;
@@ -29,19 +29,19 @@ public class CarDto {
 		this.id = id;
 	}
 
-	public Long getVin() {
+	public String getVin() {
 		return vin;
 	}
 
-	public void setVin(Long vin) {
+	public void setVin(String vin) {
 		this.vin = vin;
 	}
 
-	public int getYearOfProduction() {
+	public String getYearOfProduction() {
 		return yearOfProduction;
 	}
 
-	public void setYearOfProduction(int yearOfProduction) {
+	public void setYearOfProduction(String yearOfProduction) {
 		this.yearOfProduction = yearOfProduction;
 	}
 
@@ -61,11 +61,11 @@ public class CarDto {
 		this.model = model;
 	}
 
-	public Long getInsurancePolicyNumber() {
+	public String getInsurancePolicyNumber() {
 		return insurancePolicyNumber;
 	}
 
-	public void setInsurancePolicyNumber(Long insurancePolicyNumber) {
+	public void setInsurancePolicyNumber(String insurancePolicyNumber) {
 		this.insurancePolicyNumber = insurancePolicyNumber;
 	}
 
@@ -85,27 +85,27 @@ public class CarDto {
 		this.typeOfFuel = typeOfFuel;
 	}
 
-	public int getMileage() {
+	public String getMileage() {
 		return mileage;
 	}
 
-	public void setMileage(int mileage) {
+	public void setMileage(String mileage) {
 		this.mileage = mileage;
 	}
 
-	public int getCcm() {
+	public String getCcm() {
 		return ccm;
 	}
 
-	public void setCcm(int ccm) {
+	public void setCcm(String ccm) {
 		this.ccm = ccm;
 	}
 
-	public int getHorsePower() {
+	public String getHorsePower() {
 		return horsePower;
 	}
 
-	public void setHorsePower(int horsePower) {
+	public void setHorsePower(String horsePower) {
 		this.horsePower = horsePower;
 	}
 
@@ -125,19 +125,19 @@ public class CarDto {
 		this.description = description;
 	}
 
-	public int getNumberOfTestDrives() {
+	public String getNumberOfTestDrives() {
 		return numberOfTestDrives;
 	}
 
-	public void setNumberOfTestDrives(int numberOfTestDrives) {
+	public void setNumberOfTestDrives(String numberOfTestDrives) {
 		this.numberOfTestDrives = numberOfTestDrives;
 	}
 
-	public double getValue() {
+	public String getValue() {
 		return value;
 	}
 
-	public void setValue(double value) {
+	public void setValue(String value) {
 		this.value = value;
 	}
 

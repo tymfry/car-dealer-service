@@ -21,20 +21,20 @@ public class CarService {
 		for (Car car : cars) {
 			CarDto carDto = new CarDto();
 			carDto.setId(car.getId());
-			carDto.setVin(car.getVin());
-			carDto.setYearOfProduction(car.getYearOfProduction());
+			carDto.setVin(String.valueOf(car.getVin()));
+			carDto.setYearOfProduction(String.valueOf(car.getYearOfProduction()));
 			carDto.setBrand(car.getBrand());
 			carDto.setModel(car.getModel());
-			carDto.setInsurancePolicyNumber(car.getInsurancePolicyNumber());
+			carDto.setInsurancePolicyNumber(String.valueOf(car.getInsurancePolicyNumber()));
 			carDto.setRegistrationNumber(car.getRegistrationNumber());
 			carDto.setTypeOfFuel(car.getTypeOfFuel());
-			carDto.setMileage(car.getMileage());
-			carDto.setCcm(car.getCcm());
-			carDto.setHorsePower(car.getHorsePower());
+			carDto.setMileage(String.valueOf(car.getMileage()));
+			carDto.setCcm(String.valueOf(car.getCcm()));
+			carDto.setHorsePower(String.valueOf(car.getHorsePower()));
 			carDto.setGearbox(car.getGearbox());
 			carDto.setDescription(car.getDescription());
-			carDto.setNumberOfTestDrives(car.getNumberOfTestDrives());
-			carDto.setValue(car.getValue());
+			carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
+			carDto.setValue(String.valueOf(car.getValue()));
 			
 			carsDto.add(carDto);
 		}
