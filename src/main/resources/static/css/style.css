@@ -1,0 +1,11 @@
+#persons-header,
+#home-header,
+#insurances-header{
+	text-align: center;
+	
+}
+
+#home-header{
+	text-align: center;
+	padding-bottom: 25px;
+}
