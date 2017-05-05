@@ -23,6 +23,7 @@ public class CarDto {
 	private String value;
 	private boolean active;
 	private TypeOfVehicle typeOfVehicle;
+	private boolean dealerCar;
 
 	public Integer getId() {
 		return id;
@@ -158,6 +159,14 @@ public class CarDto {
 
 	public void setTypeOfVehicle(TypeOfVehicle typeOfVehicle) {
 		this.typeOfVehicle = typeOfVehicle;
+	}
+
+	public boolean isDealerCar() {
+		return dealerCar;
+	}
+
+	public void setDealerCar(boolean dealerCar) {
+		this.dealerCar = dealerCar;
 	}
 
 }

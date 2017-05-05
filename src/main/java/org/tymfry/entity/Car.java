@@ -44,6 +44,8 @@ public class Car {
 	private boolean active;
 	@Column
 	private TypeOfVehicle typeOfVehicle;
+	@Column
+	private boolean dealerCar; // czy pojazd jest klienta czy komisu
 
 	public Integer getId() {
 		return id;
@@ -179,6 +181,14 @@ public class Car {
 
 	public void setTypeOfVehicle(TypeOfVehicle typeOfVehicle) {
 		this.typeOfVehicle = typeOfVehicle;
+	}
+
+	public boolean isDealerCar() {
+		return dealerCar;
+	}
+
+	public void setDealerCar(boolean dealerCar) {
+		this.dealerCar = dealerCar;
 	}
 
 	public enum TypeOfFuel {
