@@ -42,6 +42,8 @@ public class Car {
 	private double value;
 	@Column
 	private boolean active;
+	@Column
+	private TypeOfVehicle typeOfVehicle;
 
 	public Integer getId() {
 		return id;
@@ -171,18 +173,60 @@ public class Car {
 		this.active = active;
 	}
 
+	public TypeOfVehicle getTypeOfVehicle() {
+		return typeOfVehicle;
+	}
+
+	public void setTypeOfVehicle(TypeOfVehicle typeOfVehicle) {
+		this.typeOfVehicle = typeOfVehicle;
+	}
+
 	public enum TypeOfFuel {
 
-		GASOLINE, DIESEL, LPG
+		GASOLINE("Benzyna"), DIESEL("Diesel"), LPG("LPG");
+
+		private String description;
+
+		TypeOfFuel(final String description) {
+			this.description = description;
+		}
+
+		public String getDescription() {
+			return this.description;
+		}
+
 	}
 
 	public enum TypeOfVehicle {
 
-		CAR, TRUCK, HATCHBACK, KOMBI, CABRIO, SEDAN, LIMOUSINE
+		CAR("Osobowy"), TRUCK("Ciężarowy"), HATCHBACK("Hatchback"), KOMBI("Kombi"), CABRIO("Cabrio"), SEDAN(
+				"Sedan"), LIMOUSINE("Limuzyna");
+
+		private String description;
+
+		TypeOfVehicle(final String description) {
+			this.description = description;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
 	}
 
 	public enum Gearbox {
-		MANUAL, AUTOMATIC
+		MANUAL("Manualna"), AUTOMATIC("Automatyczna");
+
+		private String description;
+
+		Gearbox(final String description) {
+			this.description = description;
+
+		}
+
+		public String getDescription() {
+			return description;
+		}
 
 	}
 

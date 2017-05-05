@@ -2,6 +2,7 @@ package org.tymfry.dto;
 
 import org.tymfry.entity.Car.Gearbox;
 import org.tymfry.entity.Car.TypeOfFuel;
+import org.tymfry.entity.Car.TypeOfVehicle;
 
 public class CarDto {
 
@@ -21,6 +22,7 @@ public class CarDto {
 	private String numberOfTestDrives;
 	private String value;
 	private boolean active;
+	private TypeOfVehicle typeOfVehicle;
 
 	public Integer getId() {
 		return id;
@@ -82,7 +84,7 @@ public class CarDto {
 		return typeOfFuel;
 	}
 
-	public void setTypeOfFuel(TypeOfFuel typeOfFuel) {
+	public void setTypeOfFuel(final TypeOfFuel typeOfFuel) {
 		this.typeOfFuel = typeOfFuel;
 	}
 
@@ -148,6 +150,14 @@ public class CarDto {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public TypeOfVehicle getTypeOfVehicle() {
+		return typeOfVehicle;
+	}
+
+	public void setTypeOfVehicle(TypeOfVehicle typeOfVehicle) {
+		this.typeOfVehicle = typeOfVehicle;
 	}
 
 }
