@@ -10,8 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1 layout:fragment="header" id="persons-header">Lista pojazdów
-		dostępnych w komisie</h1>
+	<h1 layout:fragment="header" id="persons-header">Lista pojazdów na sprzedaż</h1>
 	<div layout:fragment="content" class="container">
 		<table class="table">
 			<thead>
@@ -26,12 +25,12 @@
 			</thead>
 			<tbody>
 				<tr th:each="c : ${carDto}">
-					<td th:text="${carDto.brand}"></td>
-					<td th:text="${carDto.model}"></td>
-					<td th:text="${carDto.yearOfProduction}"></td>
-					<td th:text="${carDto.mileage}"></td>
-					<td th:text="${carDto.value}"></td>
-					<td></td>
+					<td th:text="${c.brand}"></td>
+					<td th:text="${c.model}"></td>
+					<td th:text="${c.yearOfProduction}"></td>
+					<td th:text="${c.mileage}"></td>
+					<td th:text="${c.value} + ' zł'"></td>
+					<td><a th:href="@{'/car-details/' + ${c.id}}"><button type="button" class="btn btn-default">szczegóły</button></a></td>
 				</tr>
 			</tbody>
 		</table>

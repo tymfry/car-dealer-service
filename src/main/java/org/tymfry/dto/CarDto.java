@@ -20,6 +20,7 @@ public class CarDto {
 	private String description;
 	private String numberOfTestDrives;
 	private String value;
+	private boolean active;
 
 	public Integer getId() {
 		return id;
@@ -139,6 +140,14 @@ public class CarDto {
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 }

@@ -13,7 +13,7 @@ public class Car {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	@Column
-	private Long vin;
+	private String vin;
 	@Column
 	private int yearOfProduction;
 	@Column
@@ -40,6 +40,8 @@ public class Car {
 	private int numberOfTestDrives;
 	@Column
 	private double value;
+	@Column
+	private boolean active;
 
 	public Integer getId() {
 		return id;
@@ -145,11 +147,11 @@ public class Car {
 		this.numberOfTestDrives = numberOfTestDrives;
 	}
 
-	public Long getVin() {
+	public String getVin() {
 		return vin;
 	}
 
-	public void setVin(Long vin) {
+	public void setVin(String vin) {
 		this.vin = vin;
 	}
 
@@ -159,6 +161,14 @@ public class Car {
 
 	public void setValue(double value) {
 		this.value = value;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public enum TypeOfFuel {
