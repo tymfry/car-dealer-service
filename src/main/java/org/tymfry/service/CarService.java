@@ -79,6 +79,14 @@ public class CarService {
 	public void sellCar(int id) {
 		Car car = carRepository.getCarById(id);
 		car.setActive(false);
+		//TODO tu będzie cała sprzedaż
+		if(car.isDealerCar() == true) {
+			//tu będzie wywołana metoda odnośnie sprzedaży eśli pojazd był "komisowy"
+			
+		} else {
+			//a tu jeśli był prywatny
+			
+		}
 		carRepository.save(car);
 	}
 
@@ -132,10 +140,10 @@ public class CarService {
 		carDto.setValue(String.valueOf(car.getValue()));
 		carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 		carDto.setDealerCar(car.isDealerCar());
-		
+
 		return carDto;
 	}
-	
+
 	public List<CarDto> getAllCessionedCars() {
 		List<Car> cars = carRepository.findAll();
 		List<CarDto> soldCarsDto = new ArrayList<>();
@@ -166,7 +174,7 @@ public class CarService {
 		return soldCarsDto;
 
 	}
-	
+
 	public List<CarDto> getAllCustomerCars() {
 		List<Car> cars = carRepository.findAll();
 		List<CarDto> soldCarsDto = new ArrayList<>();
@@ -197,6 +205,5 @@ public class CarService {
 		return soldCarsDto;
 
 	}
-	
 
 }

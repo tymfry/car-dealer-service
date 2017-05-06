@@ -25,6 +25,9 @@ public class Renouncement {
 	@JoinColumn(name = "car_id")
 	private Car car;
 
+	//TODO dopisać kwotę odstąpienia ??
+	
+	
 	public int getId() {
 		return id;
 	}

@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Agreement {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -25,4 +25,45 @@ public class Agreement {
 	@OneToOne
 	@JoinColumn(name = "sale_id")
 	private Sale sale;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Renouncement getRenouncement() {
+		return renouncement;
+	}
+
+	public void setRenouncement(Renouncement renouncement) {
+		this.renouncement = renouncement;
+	}
+
+	public Purchase getPurchase() {
+		return purchase;
+	}
+
+	public void setPurchase(Purchase purchase) {
+		this.purchase = purchase;
+	}
+
+	public Sale getSale() {
+		return sale;
+	}
+
+	public void setSale(Sale sale) {
+		this.sale = sale;
+	}
+
 }
