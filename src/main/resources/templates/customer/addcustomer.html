@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="home">
+<head>
+<title>Komis Samochodowy</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1 layout:fragment="header" id="persons-header">Dodaj klienta</h1>
+	<div layout:fragment="content" class="container">
+		<form id="carForm" th:action="@{/add-customer}"
+			th:object="${customerDto}" method="post">
+
+			<div class="row">
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Numer klienta"
+						th:field="*{customerNumber}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Imię"
+						th:field="*{name}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Nazwisko"
+						th:field="*{surname}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Adres"
+						th:field="*{address}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Nip"
+						th:field="*{nip}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Pesel"
+						th:field="*{pesel}" />
+				</div>
+
+
+
+
+
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-default" value="Zapisz">Dodaj
+						klienta</button>
+				</div>
+
+
+			</div>
+		</form>
+
+
+	</div>
+
+	<script
+		th:src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

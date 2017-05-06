@@ -34,8 +34,9 @@
 						aria-expanded="false">Dropdown <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a th:href="@{/show-all-cars}">Pojazdy</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
+							<li><a th:href="@{/show-all-customers}">Klienci</a></li>
+							<li><a th:href="@{/show-all-cessioned-cars}">Pojazdy wystawione przez komis</a></li>
+							<li><a th:href="@{/show-all-customer-cars}">Pojazdy wystawione przez klientów komisu</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="#">Separated link</a></li>
 							<li role="separator" class="divider"></li>
@@ -54,9 +55,9 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Dodaj<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a th:href="@{/add-car}">Pojazd jako klient</a></li>
+							<li><a th:href="@{/add-car-by-customer}">Wystaw pojazd jako klient</a></li>
 							<li><a th:href="@{/add-car}">Pojazd jako pracownik komisu</a></li>
-							<li><a href="#">Another action</a></li>
+							<li><a th:href="@{/sell-car-by-customer}">Sprzedaj pojazd komisowi</a></li>
 							<li><a href="#">Something else here</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="#">Separated link</a></li>

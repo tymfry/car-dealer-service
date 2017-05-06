@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="home">
+<head>
+<title>Komis Samochodowy</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1 layout:fragment="header" id="persons-header">Wystaw pojazd na sprzedaż</h1>
+	<div layout:fragment="content" class="container">
+		<form id="carForm" th:action="@{/add-car}" th:object="${carDto}"
+			method="post">
+
+			<div class="row">
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Numer VIN"
+						th:field="*{vin}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Rok produkcji"
+						th:field="*{yearOfProduction}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Marka"
+						th:field="*{brand}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Model"
+						th:field="*{model}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control"
+						placeholder="Numer aktualnej polisy OC"
+						th:field="*{insurancePolicyNumber}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control"
+						placeholder="Nr rejestracyjny" th:field="*{registrationNumber}" />
+				</div>
+
+				<div class="col-md-3"></div>
+
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Przebieg (km)"
+						th:field="*{mileage}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control"
+						placeholder="Pojemność skokowa silnika" th:field="*{ccm}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Moc (KW)"
+						th:field="*{horsePower}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Opis pojazdu"
+						th:field="*{description}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control"
+						placeholder="Ilość jazd próbnych" th:field="*{numberOfTestDrives}" />
+				</div>
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="Cena"
+						th:field="*{value}" />
+				</div>
+
+				<div>
+					<label th:for="typeOfFuel">Rodzaj paliwa</label> <select th:field="*{typeOfFuel}" th:remove="all-but-first">
+						<option
+							th:each="typeOfFuel : ${T(org.tymfry.entity.Car.TypeOfFuel).values()}"
+							th:value="${typeOfFuel}" th:field="*{typeOfFuel}"
+							th:text="${typeOfFuel.description}"></option>
+					</select>
+				</div>
+				<div>
+					<label th:for="gearbox">Skrzynia biegów</label> <select th:field="*{gearbox}" th:remove="all-but-first">
+						<option
+							th:each="gearbox : ${T(org.tymfry.entity.Car.Gearbox).values()}"
+							th:value="${gearbox}" th:field="*{gearbox}"
+							th:text="${gearbox.description}"></option>
+					</select>
+				</div>
+				<div>
+					<label th:for="typeOfVehicle">Typ samochodu</label> <select th:field="*{typeOfVehicle}" th:remove="all-but-first">
+						<option
+							th:each="typeOfVehicle : ${T(org.tymfry.entity.Car.TypeOfVehicle).values()}"
+							th:value="${typeOfVehicle}" th:field="*{typeOfVehicle}"
+							th:text="${typeOfVehicle.description}"></option>
+					</select>
+				</div>
+				
+				<div class="col-md-3">
+					<input type="hidden" class="form-control" th:value="${dealerCar}"
+						name="dealerCar" />
+				</div>
+				
+
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-default" value="Zapisz">Dodaj
+						pojazd</button>
+				</div>
+
+
+			</div>
+		</form>
+		
+  
+	</div>
+
+	<script
+		th:src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

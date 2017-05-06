@@ -1,34 +1,14 @@
-package org.tymfry.entity;
+package org.tymfry.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+public class CustomerDto {
 
-@Entity
-public class Customer {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@Column
 	private String customerNumber;
-	@Column
 	private String surname;
-	@Column
 	private String name;
-	@Column
 	private String address;
-	@Column
 	private String nip;
-	@Column
-	private Long pesel;
-	@OneToOne
-	@JoinColumn(name = "car_id")
-	private Car car;
+	private String pesel;
 
 	public Integer getId() {
 		return id;
@@ -66,8 +46,8 @@ public class Customer {
 		return address;
 	}
 
-	public void setAddress(String adress) {
-		this.address = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getNip() {
@@ -78,20 +58,12 @@ public class Customer {
 		this.nip = nip;
 	}
 
-	public Long getPesel() {
+	public String getPesel() {
 		return pesel;
 	}
 
-	public void setPesel(Long pesel) {
+	public void setPesel(String pesel) {
 		this.pesel = pesel;
-	}
-
-	public Car getCar() {
-		return car;
-	}
-
-	public void setCar(Car car) {
-		this.car = car;
 	}
 
 }

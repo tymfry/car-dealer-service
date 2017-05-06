@@ -37,6 +37,7 @@ public class CarService {
 				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
 				carDto.setValue(String.valueOf(car.getValue()));
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
+				carDto.setDealerCar(car.isDealerCar());
 
 				carsDto.add(carDto);
 			}
@@ -66,6 +67,7 @@ public class CarService {
 				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
 				carDto.setValue(String.valueOf(car.getValue()));
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
+				carDto.setDealerCar(car.isDealerCar());
 
 				soldCarsDto.add(carDto);
 			}
@@ -102,6 +104,7 @@ public class CarService {
 		car.setValue(Double.valueOf(carDto.getValue()));
 		car.setTypeOfVehicle(carDto.getTypeOfVehicle());
 		car.setActive(true);
+		car.setDealerCar(carDto.isDealerCar());
 
 		carRepository.save(car);
 	}
@@ -128,8 +131,72 @@ public class CarService {
 		carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
 		carDto.setValue(String.valueOf(car.getValue()));
 		carDto.setTypeOfVehicle(car.getTypeOfVehicle());
-
+		carDto.setDealerCar(car.isDealerCar());
+		
 		return carDto;
 	}
+	
+	public List<CarDto> getAllCessionedCars() {
+		List<Car> cars = carRepository.findAll();
+		List<CarDto> soldCarsDto = new ArrayList<>();
+		for (Car car : cars) {
+			if (car.isActive() == true && car.isDealerCar() == true) {
+				CarDto carDto = new CarDto();
+				carDto.setId(car.getId());
+				carDto.setVin(car.getVin());
+				carDto.setYearOfProduction(String.valueOf(car.getYearOfProduction()));
+				carDto.setBrand(car.getBrand());
+				carDto.setModel(car.getModel());
+				carDto.setInsurancePolicyNumber(String.valueOf(car.getInsurancePolicyNumber()));
+				carDto.setRegistrationNumber(car.getRegistrationNumber());
+				carDto.setTypeOfFuel(car.getTypeOfFuel());
+				carDto.setMileage(String.valueOf(car.getMileage()));
+				carDto.setCcm(String.valueOf(car.getCcm()));
+				carDto.setHorsePower(String.valueOf(car.getHorsePower()));
+				carDto.setGearbox(car.getGearbox());
+				carDto.setDescription(car.getDescription());
+				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
+				carDto.setValue(String.valueOf(car.getValue()));
+				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
+				carDto.setDealerCar(car.isDealerCar());
+
+				soldCarsDto.add(carDto);
+			}
+		}
+		return soldCarsDto;
+
+	}
+	
+	public List<CarDto> getAllCustomerCars() {
+		List<Car> cars = carRepository.findAll();
+		List<CarDto> soldCarsDto = new ArrayList<>();
+		for (Car car : cars) {
+			if (car.isActive() == true && car.isDealerCar() == false) {
+				CarDto carDto = new CarDto();
+				carDto.setId(car.getId());
+				carDto.setVin(car.getVin());
+				carDto.setYearOfProduction(String.valueOf(car.getYearOfProduction()));
+				carDto.setBrand(car.getBrand());
+				carDto.setModel(car.getModel());
+				carDto.setInsurancePolicyNumber(String.valueOf(car.getInsurancePolicyNumber()));
+				carDto.setRegistrationNumber(car.getRegistrationNumber());
+				carDto.setTypeOfFuel(car.getTypeOfFuel());
+				carDto.setMileage(String.valueOf(car.getMileage()));
+				carDto.setCcm(String.valueOf(car.getCcm()));
+				carDto.setHorsePower(String.valueOf(car.getHorsePower()));
+				carDto.setGearbox(car.getGearbox());
+				carDto.setDescription(car.getDescription());
+				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
+				carDto.setValue(String.valueOf(car.getValue()));
+				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
+				carDto.setDealerCar(car.isDealerCar());
+
+				soldCarsDto.add(carDto);
+			}
+		}
+		return soldCarsDto;
+
+	}
+	
 
 }

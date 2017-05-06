@@ -24,6 +24,8 @@
 				<li th:text="'Skrzynia biegów ' + 'gearbox'" class="list-group-item"></li>
 				<li th:text="'Opis właściciela: ' + *{description}" class="list-group-item"></li>
 				<li th:text="'Cena ' + *{value}" class="list-group-item"></li>
+				<li th:if="*{dealerCar}" class="list-group-item">Jest to samochód wystawiony przez komis</li>
+				<li th:unless="*{dealerCar}"  class="list-group-item">Jest to samochód wystawiony przez klienta</li>
 			</ul>
 		</div>
 		<div>

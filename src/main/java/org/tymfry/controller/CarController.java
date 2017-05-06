@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.tymfry.dto.CarDto;
-import org.tymfry.repository.CarRepository;
 import org.tymfry.service.CarService;
 
 @Controller
@@ -26,6 +25,22 @@ public class CarController {
 		return new ModelAndView("car/allcars", modelMap);
 	}
 
+	@RequestMapping(value = "/add-car-by-customer", method = RequestMethod.GET)
+	public ModelAndView showAddCarFormToCustomer(ModelMap modelMap) {
+		boolean status = false; 
+		modelMap.addAttribute("carDto", new CarDto());
+		modelMap.addAttribute("dealerCar", status);
+		return new ModelAndView("customer/addcarbycustomer", modelMap);
+	}
+	
+	@RequestMapping(value = "/sell-car-by-customer", method = RequestMethod.GET)
+	public ModelAndView showSellCarFormToCustomer(ModelMap modelMap) {
+		boolean status = true; 
+		modelMap.addAttribute("carDto", new CarDto());
+		modelMap.addAttribute("dealerCar", status);
+		return new ModelAndView("customer/sellcarbycustomer", modelMap);
+	}
+	
 	@RequestMapping(value = "/add-car", method = RequestMethod.GET)
 	public ModelAndView showAddCarForm(ModelMap modelMap) {
 		modelMap.addAttribute("carDto", new CarDto());
@@ -47,7 +62,7 @@ public class CarController {
 				System.out.println("yes");
 			}
 		}
-
+		
 		carService.sellToDealer(carDto);
 		return "redirect:/show-all-cars";
 	}
@@ -69,6 +84,18 @@ public class CarController {
 	public String sellCar(@PathVariable("id") int id) {
 		carService.sellCar(id);
 		return "redirect:/show-all-cars";
+	}
+	
+	@RequestMapping(value = "/show-all-cessioned-cars", method = RequestMethod.GET)
+	public ModelAndView showAllCessionedCars(ModelMap modelMap) {
+		modelMap.addAttribute("carDto", carService.getAllCessionedCars());
+		return new ModelAndView("car/cessionedcars", modelMap);
+	}
+	
+	@RequestMapping(value = "/show-all-customer-cars", method = RequestMethod.GET)
+	public ModelAndView showAllCustomerCars(ModelMap modelMap) {
+		modelMap.addAttribute("carDto", carService.getAllCustomerCars());
+		return new ModelAndView("car/customercars", modelMap);
 	}
 
 }

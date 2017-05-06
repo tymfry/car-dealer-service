@@ -7,7 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Renouncement {
@@ -17,8 +18,12 @@ public class Renouncement {
 	private int id;
 	@Column
 	private Date date;
-	@OneToOne(mappedBy = "renouncement")
+	@ManyToOne
+	@JoinColumn(name = "agreement_id")
 	private Agreement agreement;
+	@ManyToOne
+	@JoinColumn(name = "car_id")
+	private Car car;
 
 	public int getId() {
 		return id;
@@ -34,6 +39,22 @@ public class Renouncement {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public Agreement getAgreement() {
+		return agreement;
+	}
+
+	public void setAgreement(Agreement agreement) {
+		this.agreement = agreement;
+	}
+
+	public Car getCar() {
+		return car;
+	}
+
+	public void setCar(Car car) {
+		this.car = car;
 	}
 
 }
