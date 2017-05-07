@@ -24,6 +24,7 @@ public class CarDto {
 	private boolean active;
 	private TypeOfVehicle typeOfVehicle;
 	private boolean dealerCar;
+	private boolean accepted;
 
 	public Integer getId() {
 		return id;
@@ -167,6 +168,14 @@ public class CarDto {
 
 	public void setDealerCar(boolean dealerCar) {
 		this.dealerCar = dealerCar;
+	}
+
+	public boolean isAccepted() {
+		return accepted;
+	}
+
+	public void setAccepted(boolean accepted) {
+		this.accepted = accepted;
 	}
 
 }

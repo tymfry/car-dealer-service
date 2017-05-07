@@ -94,8 +94,17 @@
 							th:text="${typeOfVehicle.description}"></option>
 					</select>
 				</div>
+				<div>
+					<label>Pojazd sprzedany komisowi</label>
+					<input type="radio" th:value="true" th:field="*{dealerCar}"/>
+					<label>Pojazd wystawiony przez klienta</label>
+					<input type="radio" th:value="false" th:field="*{dealerCar}"/>
+				</div>
 				
-				
+				<div>
+					<label>Wystaw pojazd na sprzedaż i umieść go na liście którą mogą odwiedzać kupujący</label> <input th:type="radio"
+						th:value="true" th:field="*{accepted}" checked="checked" />
+				</div>
 				
 
 				<div class="col-md-12">

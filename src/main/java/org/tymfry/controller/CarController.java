@@ -27,23 +27,28 @@ public class CarController {
 
 	@RequestMapping(value = "/add-car-by-customer", method = RequestMethod.GET)
 	public ModelAndView showAddCarFormToCustomer(ModelMap modelMap) {
-		boolean status = false; 
+		boolean status = false;
 		modelMap.addAttribute("carDto", new CarDto());
 		modelMap.addAttribute("dealerCar", status);
+		modelMap.addAttribute("accepted", status);
 		return new ModelAndView("customer/addcarbycustomer", modelMap);
 	}
-	
+
 	@RequestMapping(value = "/sell-car-by-customer", method = RequestMethod.GET)
 	public ModelAndView showSellCarFormToCustomer(ModelMap modelMap) {
-		boolean status = true; 
+		boolean status = true;
+		boolean active = false;
 		modelMap.addAttribute("carDto", new CarDto());
 		modelMap.addAttribute("dealerCar", status);
+		modelMap.addAttribute("active", active);
 		return new ModelAndView("customer/sellcarbycustomer", modelMap);
 	}
-	
+
 	@RequestMapping(value = "/add-car", method = RequestMethod.GET)
 	public ModelAndView showAddCarForm(ModelMap modelMap) {
+		boolean active = true;
 		modelMap.addAttribute("carDto", new CarDto());
+		modelMap.addAttribute("active", active);
 		return new ModelAndView("car/addcar", modelMap);
 	}
 
@@ -62,7 +67,7 @@ public class CarController {
 				System.out.println("yes");
 			}
 		}
-		
+
 		carService.sellToDealer(carDto);
 		return "redirect:/show-all-cars";
 	}
@@ -79,19 +84,19 @@ public class CarController {
 		modelMap.addAttribute("carDto", carService.getAllSoldCars());
 		return new ModelAndView("car/soldcars", modelMap);
 	}
-	
+
 	@RequestMapping(value = "/sell-car/{id}", method = RequestMethod.GET)
 	public String sellCar(@PathVariable("id") int id) {
 		carService.sellCar(id);
 		return "redirect:/show-all-cars";
 	}
-	
+
 	@RequestMapping(value = "/show-all-cessioned-cars", method = RequestMethod.GET)
 	public ModelAndView showAllCessionedCars(ModelMap modelMap) {
 		modelMap.addAttribute("carDto", carService.getAllCessionedCars());
 		return new ModelAndView("car/cessionedcars", modelMap);
 	}
-	
+
 	@RequestMapping(value = "/show-all-customer-cars", method = RequestMethod.GET)
 	public ModelAndView showAllCustomerCars(ModelMap modelMap) {
 		modelMap.addAttribute("carDto", carService.getAllCustomerCars());
