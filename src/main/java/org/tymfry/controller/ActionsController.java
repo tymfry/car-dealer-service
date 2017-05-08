@@ -24,7 +24,7 @@ public class ActionsController {
 @RequestMapping(value = "/add-car-to-customer/{id}", method = RequestMethod.GET)
 public ModelAndView getCustomerId(@PathVariable("id") Integer id, ModelMap modelMap) {
 	 modelMap.addAttribute("customerId", id);
-	 modelMap.addAttribute("carDto", carService.getAllCars());
+	 modelMap.addAttribute("carDto", carService.getAllCustomerCars());
 	 return new ModelAndView("actions/assigncartocustomer", modelMap);
 }
 
