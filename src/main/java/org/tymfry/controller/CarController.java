@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.tymfry.dto.CarDto;
+import org.tymfry.service.AgreementService;
 import org.tymfry.service.CarService;
 
 @Controller
@@ -18,6 +19,8 @@ public class CarController {
 
 	@Autowired
 	private CarService carService;
+	@Autowired
+	private AgreementService agreementService;
 
 	@RequestMapping(value = "/show-all-cars", method = RequestMethod.GET)
 	public ModelAndView showAllCars(ModelMap modelMap) {
@@ -93,7 +96,7 @@ public class CarController {
 	@RequestMapping(value = "/show-all-cessioned-cars", method = RequestMethod.GET)
 	public ModelAndView showAllCessionedCars(ModelMap modelMap) {
 		modelMap.addAttribute("carDto", carService.getAllCessionedCars());
-		return new ModelAndView("car/cessionedcars", modelMap);
+		return new ModelAndView("car/dealercars", modelMap);
 	}
 
 	@RequestMapping(value = "/show-all-customer-cars", method = RequestMethod.GET)
@@ -117,6 +120,7 @@ public class CarController {
 	@RequestMapping(value = "/get-car-for-approve/{id}", method =  RequestMethod.GET)
 	public String approveCarsFromCustomers(@PathVariable("id") int id) {
 		carService.approveCar(id);
+		agreementService.approveCar(id, "content");
 		return "redirect:/get-all-cars-for-approval";
 	}
 

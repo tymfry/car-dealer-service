@@ -1,5 +1,7 @@
 package org.tymfry.dto;
 
+import java.math.BigDecimal;
+
 import org.tymfry.entity.Car.Gearbox;
 import org.tymfry.entity.Car.TypeOfFuel;
 import org.tymfry.entity.Car.TypeOfVehicle;
@@ -20,11 +22,16 @@ public class CarDto {
 	private Gearbox gearbox;
 	private String description;
 	private String numberOfTestDrives;
-	private String value;
-	private boolean active; // car is available to buy when true, when false employee can saw cars "/show-all-sold-cars", always true when cutomer or employee appends car 
+	private BigDecimal value;
+	private boolean active; // car is available to buy when true, when false
+							// employee can saw cars "/show-all-sold-cars",
+							// always true when cutomer or employee appends car
 	private TypeOfVehicle typeOfVehicle;
-	private boolean dealerCar; // dealer car is cessioned by customer when true (different type of agreement), if false dealer sell car as a broker
-	private boolean accepted; // vehicle added by user is always false, to show vehicle on the sales list employee need to check data implemented by user.
+	private boolean dealerCar; // if true car is sold to dealer if not car is
+								// cessioned by customer
+	private boolean accepted; // vehicle added by user is always false, to show
+								// vehicle on the sales list employee need to
+								// check data implemented by user.
 
 	public Integer getId() {
 		return id;
@@ -138,11 +145,11 @@ public class CarDto {
 		this.numberOfTestDrives = numberOfTestDrives;
 	}
 
-	public String getValue() {
+	public BigDecimal getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(BigDecimal value) {
 		this.value = value;
 	}
 

@@ -1,5 +1,8 @@
 package org.tymfry.entity;
 
+import java.math.BigDecimal;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,15 +19,17 @@ public class Agreement {
 	private int id;
 	@Column
 	private String content;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "renouncement_id")
 	private Renouncement renouncement;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "purchase_id")
 	private Purchase purchase;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "sale_id")
 	private Sale sale;
+	@Column
+	private BigDecimal dealerComission;
 
 	public int getId() {
 		return id;
@@ -65,5 +70,15 @@ public class Agreement {
 	public void setSale(Sale sale) {
 		this.sale = sale;
 	}
+
+	public BigDecimal getBigDecimal() {
+		return dealerComission;
+	}
+
+	public void setBigDecimal(BigDecimal bigDecimal) {
+		this.dealerComission = bigDecimal;
+	}
+
+	
 
 }

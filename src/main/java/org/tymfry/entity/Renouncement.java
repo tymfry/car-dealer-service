@@ -1,5 +1,6 @@
 package org.tymfry.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,15 +20,11 @@ public class Renouncement {
 	@Column
 	private Date date;
 	@ManyToOne
-	@JoinColumn(name = "agreement_id")
-	private Agreement agreement;
-	@ManyToOne
 	@JoinColumn(name = "car_id")
 	private Car car;
+	@Column
+	private BigDecimal value;
 
-	//TODO dopisać kwotę odstąpienia ??
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -44,20 +41,20 @@ public class Renouncement {
 		this.date = date;
 	}
 
-	public Agreement getAgreement() {
-		return agreement;
-	}
-
-	public void setAgreement(Agreement agreement) {
-		this.agreement = agreement;
-	}
-
 	public Car getCar() {
 		return car;
 	}
 
 	public void setCar(Car car) {
 		this.car = car;
+	}
+
+	public BigDecimal getValue() {
+		return value;
+	}
+
+	public void setValue(BigDecimal value) {
+		this.value = value;
 	}
 
 }

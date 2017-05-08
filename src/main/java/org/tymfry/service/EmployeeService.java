@@ -19,9 +19,10 @@ public class EmployeeService {
 		Customer customer = customerRepository.findOne(customerId);
 		Car car = carRepository.findOne(carId);
 		customer.setCar(car);
+		car.setCustomer(customer);
 		
 		customerRepository.save(customer);
-		
+		carRepository.save(car);
 	}
 
 }

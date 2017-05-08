@@ -14,6 +14,8 @@ public class CarService {
 
 	@Autowired
 	private CarRepository carRepository;
+	@Autowired
+	private AgreementService agreementService;
 
 	public List<CarDto> getAllCars() {
 		List<Car> cars = carRepository.findAll();
@@ -35,7 +37,7 @@ public class CarService {
 				carDto.setGearbox(car.getGearbox());
 				carDto.setDescription(car.getDescription());
 				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
-				carDto.setValue(String.valueOf(car.getValue()));
+				carDto.setValue(car.getValue());
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 				carDto.setDealerCar(car.isDealerCar());
 
@@ -65,7 +67,7 @@ public class CarService {
 				carDto.setGearbox(car.getGearbox());
 				carDto.setDescription(car.getDescription());
 				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
-				carDto.setValue(String.valueOf(car.getValue()));
+				carDto.setValue(car.getValue());
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 				carDto.setDealerCar(car.isDealerCar());
 
@@ -96,7 +98,7 @@ public class CarService {
 				carDto.setGearbox(car.getGearbox());
 				carDto.setDescription(car.getDescription());
 				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
-				carDto.setValue(String.valueOf(car.getValue()));
+				carDto.setValue(car.getValue());
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 				carDto.setDealerCar(car.isDealerCar());
 
@@ -127,7 +129,7 @@ public class CarService {
 				carDto.setGearbox(car.getGearbox());
 				carDto.setDescription(car.getDescription());
 				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
-				carDto.setValue(String.valueOf(car.getValue()));
+				carDto.setValue(car.getValue());
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 				carDto.setDealerCar(car.isDealerCar());
 
@@ -141,13 +143,10 @@ public class CarService {
 	public void sellCar(int id) {
 		Car car = carRepository.getCarById(id);
 		car.setActive(false);
-		//TODO tu będzie cała sprzedaż
 		if(car.isDealerCar() == true) {
-			//tu będzie wywołana metoda odnośnie sprzedaży eśli pojazd był "komisowy"
-			
+			agreementService.sellDealerCar(id, "content");
 		} else {
-			//a tu jeśli był prywatny
-			
+			agreementService.sellCustomerCar(id, "content");
 		}
 		carRepository.save(car);
 	}
@@ -160,7 +159,7 @@ public class CarService {
 	
 	public void setValue(CarDto carDto) {
 		Car car = carRepository.getCarById(carDto.getId());
-		car.setValue(Double.valueOf(carDto.getValue()));
+		car.setValue(carDto.getValue());
 		carRepository.save(car);
 	}
 
@@ -183,7 +182,7 @@ public class CarService {
 		car.setGearbox(carDto.getGearbox());
 		car.setDescription(carDto.getDescription());
 		car.setNumberOfTestDrives(Integer.valueOf(carDto.getNumberOfTestDrives()));
-		car.setValue(Double.valueOf(carDto.getValue()));
+		car.setValue(carDto.getValue());
 		car.setTypeOfVehicle(carDto.getTypeOfVehicle());
 		car.setActive(true);
 		car.setDealerCar(carDto.isDealerCar());
@@ -211,7 +210,7 @@ public class CarService {
 		carDto.setGearbox(car.getGearbox());
 		carDto.setDescription(car.getDescription());
 		carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
-		carDto.setValue(String.valueOf(car.getValue()));
+		carDto.setValue(car.getValue());
 		carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 		carDto.setDealerCar(car.isDealerCar());
 
@@ -238,7 +237,7 @@ public class CarService {
 				carDto.setGearbox(car.getGearbox());
 				carDto.setDescription(car.getDescription());
 				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
-				carDto.setValue(String.valueOf(car.getValue()));
+				carDto.setValue(car.getValue());
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 				carDto.setDealerCar(car.isDealerCar());
 
@@ -269,7 +268,7 @@ public class CarService {
 				carDto.setGearbox(car.getGearbox());
 				carDto.setDescription(car.getDescription());
 				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
-				carDto.setValue(String.valueOf(car.getValue()));
+				carDto.setValue(car.getValue());
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 				carDto.setDealerCar(car.isDealerCar());
 

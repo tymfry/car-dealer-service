@@ -1,10 +1,14 @@
 package org.tymfry.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Car {
@@ -39,7 +43,7 @@ public class Car {
 	@Column
 	private int numberOfTestDrives;
 	@Column
-	private double value;
+	private BigDecimal value;
 	@Column
 	private boolean active;
 	@Column
@@ -48,6 +52,9 @@ public class Car {
 	private boolean dealerCar;
 	@Column
 	private boolean accepted;
+	@OneToOne
+	@JoinColumn(name = "customer_id")
+	private Customer customer;
 
 	public Integer getId() {
 		return id;
@@ -161,11 +168,11 @@ public class Car {
 		this.vin = vin;
 	}
 
-	public double getValue() {
+	public BigDecimal getValue() {
 		return value;
 	}
 
-	public void setValue(double value) {
+	public void setValue(BigDecimal value) {
 		this.value = value;
 	}
 
@@ -199,6 +206,14 @@ public class Car {
 
 	public void setAccepted(boolean accepted) {
 		this.accepted = accepted;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public enum TypeOfFuel {
