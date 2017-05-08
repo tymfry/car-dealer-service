@@ -113,7 +113,7 @@ public class CarService {
 		car.setTypeOfVehicle(carDto.getTypeOfVehicle());
 		car.setActive(true);
 		car.setDealerCar(carDto.isDealerCar());
-		car.setActive(carDto.isActive());
+		car.setAccepted(carDto.isAccepted());
 		carRepository.save(car);
 	}
 

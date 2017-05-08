@@ -46,9 +46,7 @@ public class CarController {
 
 	@RequestMapping(value = "/add-car", method = RequestMethod.GET)
 	public ModelAndView showAddCarForm(ModelMap modelMap) {
-		boolean active = true;
 		modelMap.addAttribute("carDto", new CarDto());
-		modelMap.addAttribute("active", active);
 		return new ModelAndView("car/addcar", modelMap);
 	}
 

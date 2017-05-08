@@ -21,10 +21,10 @@ public class CarDto {
 	private String description;
 	private String numberOfTestDrives;
 	private String value;
-	private boolean active;
+	private boolean active; // car is available to buy when true, when false employee can saw cars "/show-all-sold-cars", always true when cutomer or employee appends car 
 	private TypeOfVehicle typeOfVehicle;
-	private boolean dealerCar;
-	private boolean accepted;
+	private boolean dealerCar; // dealer car is cessioned by customer when true (different type of agreement), if false dealer sell car as a broker
+	private boolean accepted; // vehicle added by user is always false, to show vehicle on the sales list employee need to check data implemented by user.
 
 	public Integer getId() {
 		return id;
