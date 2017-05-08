@@ -27,20 +27,21 @@ public class CarController {
 
 	@RequestMapping(value = "/add-car-by-customer", method = RequestMethod.GET)
 	public ModelAndView showAddCarFormToCustomer(ModelMap modelMap) {
-		boolean status = false;
+		boolean dealerCar = false;
+		boolean accepted = false;
 		modelMap.addAttribute("carDto", new CarDto());
-		modelMap.addAttribute("dealerCar", status);
-		modelMap.addAttribute("accepted", status);
+		modelMap.addAttribute("dealerCar", dealerCar);
+		modelMap.addAttribute("accepted", accepted);
 		return new ModelAndView("customer/addcarbycustomer", modelMap);
 	}
 
 	@RequestMapping(value = "/sell-car-by-customer", method = RequestMethod.GET)
 	public ModelAndView showSellCarFormToCustomer(ModelMap modelMap) {
-		boolean status = true;
-		boolean active = false;
+		boolean dealerCar = true;
+		boolean accepted = false;
 		modelMap.addAttribute("carDto", new CarDto());
-		modelMap.addAttribute("dealerCar", status);
-		modelMap.addAttribute("active", active);
+		modelMap.addAttribute("dealerCar", dealerCar);
+		modelMap.addAttribute("accepted", accepted);
 		return new ModelAndView("customer/sellcarbycustomer", modelMap);
 	}
 
@@ -51,7 +52,7 @@ public class CarController {
 	}
 
 	@RequestMapping(value = "/add-car", method = RequestMethod.POST)
-	public String addCar(@ModelAttribute("carDto") CarDto carDto, ModelMap modelMap) {
+	public String addCar(@ModelAttribute("carDto") CarDto carDto) {
 		List<CarDto> soldCars = carService.getAllSoldCars();
 		for (CarDto car : soldCars) {
 			if (carDto.getVin().equals(car.getVin())) {
@@ -100,5 +101,30 @@ public class CarController {
 		modelMap.addAttribute("carDto", carService.getAllCustomerCars());
 		return new ModelAndView("car/customercars", modelMap);
 	}
+	
+	@RequestMapping(value = "/show-all-cars-for-customers", method = RequestMethod.GET)
+	public ModelAndView showAllCarsForCustomers(ModelMap modelMap) {
+		modelMap.addAttribute("carDto", carService.getAllCarsForCustomers());
+		return new ModelAndView("car/showcarstocustomers", modelMap);
+	}
+	
+	@RequestMapping(value = "/get-all-cars-for-approval", method = RequestMethod.GET)
+	public ModelAndView getAllCarsForApproval(ModelMap modelMap) {
+		modelMap.addAttribute("carDto", carService.getAllCarsForApproval());
+		return new ModelAndView("car/carsforapproval", modelMap);
+	}
+	
+	@RequestMapping(value = "/get-car-for-approve/{id}", method =  RequestMethod.GET)
+	public String approveCarsFromCustomers(@PathVariable("id") int id) {
+		carService.approveCar(id);
+		return "redirect:/get-all-cars-for-approval";
+	}
 
+	@RequestMapping(value = "/set-value", method = RequestMethod.POST)
+	public String setValue(@ModelAttribute("CarDto") CarDto carDto) {
+		carService.setValue(carDto);
+		return "redirect:/get-all-cars-for-approval";
+	}
+	
+	
 }

@@ -103,7 +103,7 @@
 				</div>
 
 				<div>
-					<input th:type="radio" th:value="false" th:field="*{active}" checked="checked" hidden="hidden"/>
+					<input type="hidden" th:value="${accepted}" th:field="*{accepted}" name="accepted"/>
 				</div>
 
 				<div class="col-md-12">

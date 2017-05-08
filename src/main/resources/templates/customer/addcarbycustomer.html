@@ -102,11 +102,12 @@
 					<input type="hidden" class="form-control" th:value="${dealerCar}"
 						name="dealerCar" />
 				</div>
+
 				<div>
-					<label>Twój pojazd pojawi się na liście sprzedaży po
-						zaakceptowaniu przez pracownika komisu</label> <input th:type="radio"
-						value="true" th:field="*{accepted}" checked="checked" hidden="hidden" />
+					<input type="hidden" class="form-control" th:value="${accepted}" 
+						name="accepted" />
 				</div>
+
 				<div class="col-md-12">
 					<button type="submit" class="btn btn-default" value="Zapisz">Dodaj
 						pojazd</button>

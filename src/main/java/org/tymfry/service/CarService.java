@@ -75,6 +75,68 @@ public class CarService {
 		return soldCarsDto;
 
 	}
+	
+	public List<CarDto> getAllCarsForCustomers() {
+		List<Car> cars = carRepository.findAll();
+		List<CarDto> soldCarsDto = new ArrayList<>();
+		for (Car car : cars) {
+			if (car.isActive() == true && car.isAccepted() == true) {
+				CarDto carDto = new CarDto();
+				carDto.setId(car.getId());
+				carDto.setVin(car.getVin());
+				carDto.setYearOfProduction(String.valueOf(car.getYearOfProduction()));
+				carDto.setBrand(car.getBrand());
+				carDto.setModel(car.getModel());
+				carDto.setInsurancePolicyNumber(String.valueOf(car.getInsurancePolicyNumber()));
+				carDto.setRegistrationNumber(car.getRegistrationNumber());
+				carDto.setTypeOfFuel(car.getTypeOfFuel());
+				carDto.setMileage(String.valueOf(car.getMileage()));
+				carDto.setCcm(String.valueOf(car.getCcm()));
+				carDto.setHorsePower(String.valueOf(car.getHorsePower()));
+				carDto.setGearbox(car.getGearbox());
+				carDto.setDescription(car.getDescription());
+				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
+				carDto.setValue(String.valueOf(car.getValue()));
+				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
+				carDto.setDealerCar(car.isDealerCar());
+
+				soldCarsDto.add(carDto);
+			}
+		}
+		return soldCarsDto;
+
+	}
+	
+	public List<CarDto> getAllCarsForApproval() {
+		List<Car> cars = carRepository.findAll();
+		List<CarDto> soldCarsDto = new ArrayList<>();
+		for (Car car : cars) {
+			if (car.isActive() == true && car.isAccepted() == false) {
+				CarDto carDto = new CarDto();
+				carDto.setId(car.getId());
+				carDto.setVin(car.getVin());
+				carDto.setYearOfProduction(String.valueOf(car.getYearOfProduction()));
+				carDto.setBrand(car.getBrand());
+				carDto.setModel(car.getModel());
+				carDto.setInsurancePolicyNumber(String.valueOf(car.getInsurancePolicyNumber()));
+				carDto.setRegistrationNumber(car.getRegistrationNumber());
+				carDto.setTypeOfFuel(car.getTypeOfFuel());
+				carDto.setMileage(String.valueOf(car.getMileage()));
+				carDto.setCcm(String.valueOf(car.getCcm()));
+				carDto.setHorsePower(String.valueOf(car.getHorsePower()));
+				carDto.setGearbox(car.getGearbox());
+				carDto.setDescription(car.getDescription());
+				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
+				carDto.setValue(String.valueOf(car.getValue()));
+				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
+				carDto.setDealerCar(car.isDealerCar());
+
+				soldCarsDto.add(carDto);
+			}
+		}
+		return soldCarsDto;
+
+	}
 
 	public void sellCar(int id) {
 		Car car = carRepository.getCarById(id);
@@ -87,6 +149,18 @@ public class CarService {
 			//a tu jeśli był prywatny
 			
 		}
+		carRepository.save(car);
+	}
+	
+	public void approveCar(int id) {
+		Car car = carRepository.getCarById(id);
+		car.setAccepted(true);
+		carRepository.save(car);     //tu dodać cesję
+	}
+	
+	public void setValue(CarDto carDto) {
+		Car car = carRepository.getCarById(carDto.getId());
+		car.setValue(Double.valueOf(carDto.getValue()));
 		carRepository.save(car);
 	}
 
