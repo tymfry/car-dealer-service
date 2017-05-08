@@ -19,9 +19,9 @@
 					class="list-group-item"></li>
 				<li th:text="'Przebieg ' + *{mileage}" class="list-group-item"></li>
 				<li th:text="'Silnik ' + *{ccm}" class="list-group-item"></li>
-				<li th:text="'Typ Paliwa ' + 'typeOfFuel'" class="list-group-item"></li>
+				<li th:text="'Typ Paliwa ' + *{typeOfFuel}" class="list-group-item"></li>
 				<li th:text="'Moc ' + *{horsePower} + ' KW'" class="list-group-item"></li>
-				<li th:text="'Skrzynia biegów ' + 'gearbox'" class="list-group-item"></li>
+				<li th:text="'Skrzynia biegów ' + *{gearbox.description}" class="list-group-item"></li>
 				<li th:text="'Opis właściciela: ' + *{description}" class="list-group-item"></li>
 				<li th:text="'Cena ' + *{value}" class="list-group-item"></li>
 				<li th:if="*{dealerCar}" class="list-group-item">Jest to samochód wystawiony przez komis</li>
