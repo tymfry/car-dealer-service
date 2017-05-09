@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="home">
+<head>
+<title>Komis Samochodowy</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1 layout:fragment="header" id="persons-header">Sprawdz poprawność danych i zmień cenę</h1>
+	<div layout:fragment="content" class="container">
+	<!-- 	<div class="panel panel-default">
+			
+			<ul th:object="${carDto}" class="list-group">
+				<li th:text="'Rocznik ' + *{yearOfProduction}"
+					class="list-group-item"></li>
+				<li th:text="'Przebieg ' + *{mileage}" class="list-group-item"></li>
+				<li th:text="'Silnik ' + *{ccm}" class="list-group-item"></li>
+				<li th:text="'Typ Paliwa ' + *{typeOfFuel}" class="list-group-item"></li>
+				<li th:text="'Moc ' + *{horsePower} + ' KW'" class="list-group-item"></li>
+				<li th:text="'Skrzynia biegów ' + *{gearbox.description}" class="list-group-item"></li>
+				<li th:text="'Opis właściciela: ' + *{description}" class="list-group-item"></li>
+				<li th:text="'Cena za którą komis nabył pojazd' + *{value}" class="list-group-item"></li>
+				<li th:if="*{dealerCar}" class="list-group-item">Jest to samochód wystawiony przez komis</li>
+				<li th:unless="*{dealerCar}"  class="list-group-item">Jest to samochód wystawiony przez klienta</li>
+			</ul>
+		</div> -->
+		<div>
+			<form th:action="@{/set-value}" method="post" th:object="${carDto}">
+				<input type="text" th:field="*{id}" th:value="*{id}" />
+				<input type="text" th:field="*{value}" />
+				<button type="submit" class="btn btn-default">Zapisz nową cenę</button>
+			</form>
+		</div>
+		<div>
+			<a th:href="@{/show-all-sold-cars}"><button type="button" class="btn btn-default">Powrót do listy</button></a>
+		</div>
+	</div>
+
+	<script
+		th:src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -59,7 +59,7 @@ public class AgreementService {
 			purchase.setCar(car);
 			agreement.setContent("treść umowy kupna");
 			agreement.setPurchase(purchase);
-			//TODO cena pojazdu musi się zmienić (musi być zaktualizowana)
+			//TODO cena pojazdu musi się zmienić (musi być zaktualizowana) in progress
 		}
 		
 		

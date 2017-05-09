@@ -118,17 +118,21 @@ public class CarController {
 	}
 	
 	@RequestMapping(value = "/get-car-for-approve/{id}", method =  RequestMethod.GET)
-	public String approveCarsFromCustomers(@PathVariable("id") int id) {
+	public ModelAndView approveCarsFromCustomers(@PathVariable("id") int id, ModelMap modelMap) {
 		carService.approveCar(id);
 		agreementService.approveCar(id, "content");
-		return "redirect:/get-all-cars-for-approval";
+		modelMap.addAttribute("carDto", carService.getCarById(id));
+		return new ModelAndView("car/changevalue", modelMap);
 	}
 
 	@RequestMapping(value = "/set-value", method = RequestMethod.POST)
-	public String setValue(@ModelAttribute("CarDto") CarDto carDto) {
-		carService.setValue(carDto);
+	public String setValue(@ModelAttribute("carDto") CarDto carDto, ModelMap modelMap) {
+		CarDto carToUpdate = carService.getCarById(carDto.getId());
+		carService.setValue(carToUpdate);
+		modelMap.addAttribute("carDto", carToUpdate);
 		return "redirect:/get-all-cars-for-approval";
 	}
 	
+	// TODO dopisać widok do aktualizacji ceny pojazdu, metodę get i post
 	
 }

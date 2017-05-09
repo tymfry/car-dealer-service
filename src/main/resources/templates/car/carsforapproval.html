@@ -34,7 +34,7 @@
 					<td><a th:href="@{'/get-car-for-approve/' + ${c.id}}"><button
 								type="button" class="btn btn-default">Zatwierdz</button></a></td>
 					
-					<td th:if="${c.dealerCar}"><a th:href="@{'/set-new-car-value/' + ${c.id}}"><button
+					<td th:if="${c.dealerCar}"><a th:href="@{'/get-car-for-approve/' + ${c.id}}"><button
 								type="button" class="btn btn-default">Zmień cenę</button></a></td>
 					
 				</tr>
