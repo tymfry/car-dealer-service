@@ -30,13 +30,14 @@
 		</div> -->
 		<div>
 			<form th:action="@{/set-value}" method="post" th:object="${carDto}">
-				<input type="text" th:field="*{id}" th:value="*{id}" />
+					<input type="hidden" th:field="*{id}" th:value="*{id}" />
+					<p th:text="'Aktualna cena ' + *{value}"></p>
 				<input type="text" th:field="*{value}" />
 				<button type="submit" class="btn btn-default">Zapisz nową cenę</button>
 			</form>
 		</div>
 		<div>
-			<a th:href="@{/show-all-sold-cars}"><button type="button" class="btn btn-default">Powrót do listy</button></a>
+			<a th:href="@{/get-all-cars-for-approval}"><button type="button" class="btn btn-default">Powrót do listy</button></a>
 		</div>
 	</div>
 

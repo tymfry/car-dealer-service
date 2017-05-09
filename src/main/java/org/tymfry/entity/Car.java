@@ -55,6 +55,8 @@ public class Car {
 	@OneToOne
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
+	@Column
+	private BigDecimal oldValue;
 
 	public Integer getId() {
 		return id;
@@ -230,6 +232,14 @@ public class Car {
 			return this.description;
 		}
 
+	}
+
+	public BigDecimal getOldValue() {
+		return oldValue;
+	}
+
+	public void setOldValue(BigDecimal dealerValue) {
+		this.oldValue = dealerValue;
 	}
 
 	public enum TypeOfVehicle {

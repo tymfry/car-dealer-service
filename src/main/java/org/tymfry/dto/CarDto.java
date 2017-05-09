@@ -32,6 +32,7 @@ public class CarDto {
 	private boolean accepted; // vehicle added by user is always false, to show
 								// vehicle on the sales list employee need to
 								// check data implemented by user.
+	private BigDecimal oldValue;
 
 	public Integer getId() {
 		return id;
@@ -185,4 +186,13 @@ public class CarDto {
 		this.accepted = accepted;
 	}
 
+	public BigDecimal getOldValue() {
+		return oldValue;
+	}
+
+	public void setOldValue(BigDecimal dealerValue) {
+		this.oldValue = dealerValue;
+	}
+
+	
 }

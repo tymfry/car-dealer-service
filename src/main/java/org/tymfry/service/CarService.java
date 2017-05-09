@@ -183,6 +183,7 @@ public class CarService {
 		car.setDescription(carDto.getDescription());
 		car.setNumberOfTestDrives(Integer.valueOf(carDto.getNumberOfTestDrives()));
 		car.setValue(carDto.getValue());
+		car.setOldValue(carDto.getValue());
 		car.setTypeOfVehicle(carDto.getTypeOfVehicle());
 		car.setActive(true);
 		car.setDealerCar(carDto.isDealerCar());
