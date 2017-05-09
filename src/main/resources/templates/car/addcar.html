@@ -10,116 +10,171 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1 layout:fragment="header" id="persons-header">Dodaj pojazd do
-		komisu</h1>
+	<h1 layout:fragment="header" id="persons-header">Dodaj pojazd</h1>
 	<div layout:fragment="content" class="container">
 		<form id="carForm" th:action="@{/add-car}" th:object="${carDto}"
 			method="post">
 
-			<div class="row">
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Numer VIN"
-						th:field="*{vin}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Rok produkcji"
-						th:field="*{yearOfProduction}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Marka"
-						th:field="*{brand}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Model"
-						th:field="*{model}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control"
-						placeholder="Numer aktualnej polisy OC"
-						th:field="*{insurancePolicyNumber}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control"
-						placeholder="Nr rejestracyjny" th:field="*{registrationNumber}" />
-				</div>
-
-				<div class="col-md-3"></div>
-
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Przebieg (km)"
-						th:field="*{mileage}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control"
-						placeholder="Pojemność skokowa silnika" th:field="*{ccm}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Moc (KW)"
-						th:field="*{horsePower}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Opis pojazdu"
-						th:field="*{description}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control"
-						placeholder="Ilość jazd próbnych" th:field="*{numberOfTestDrives}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Cena"
-						th:field="*{value}" />
-				</div>
-
-				<div>
-					<label th:for="typeOfFuel">Rodzaj paliwa</label> <select th:field="*{typeOfFuel}" th:remove="all-but-first">
-						<option
-							th:each="typeOfFuel : ${T(org.tymfry.entity.Car.TypeOfFuel).values()}"
-							th:value="${typeOfFuel}" th:field="*{typeOfFuel}"
-							th:text="${typeOfFuel.description}"></option>
-					</select>
-				</div>
-				<div>
-					<label th:for="gearbox">Skrzynia biegów</label> <select th:field="*{gearbox}" th:remove="all-but-first">
-						<option
-							th:each="gearbox : ${T(org.tymfry.entity.Car.Gearbox).values()}"
-							th:value="${gearbox}" th:field="*{gearbox}"
-							th:text="${gearbox.description}"></option>
-					</select>
-				</div>
-				<div>
-					<label th:for="typeOfVehicle">Typ samochodu</label> <select th:field="*{typeOfVehicle}" th:remove="all-but-first">
-						<option
-							th:each="typeOfVehicle : ${T(org.tymfry.entity.Car.TypeOfVehicle).values()}"
-							th:value="${typeOfVehicle}" th:field="*{typeOfVehicle}"
-							th:text="${typeOfVehicle.description}"></option>
-					</select>
-				</div>
-				<div>
-					<label>Pojazd sprzedany komisowi</label>
-					<input type="radio" th:value="true" th:field="*{dealerCar}"/>
-					<label>Pojazd wystawiony przez klienta</label>
-					<input type="radio" th:value="false" th:field="*{dealerCar}"/>
-				</div>
-				
-				<div>
-					<label>Wystaw pojazd na sprzedaż i umieść go na liście którą mogą odwiedzać kupujący</label> <input th:type="radio"
-						th:value="true" th:field="*{accepted}"  />
-						<label>Wystaw pojazd do poczekalni</label> <input th:type="radio"
-						th:value="false" th:field="*{accepted}"  />
-				</div>
-				
-
-				<div class="col-md-12">
-					<button type="submit" class="btn btn-default" value="Zapisz">Dodaj
-						pojazd</button>
-				</div>
-
-
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Numer VIN</span>
+				</h3>
+				<input type="text" class="form-control" th:field="*{vin}" />
 			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Rok produkcji</span>
+				</h3>
+				<input type="text" class="form-control"
+					th:field="*{yearOfProduction}" />
+			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Marka</span>
+				</h3>
+				<input type="text" class="form-control" th:field="*{brand}" />
+			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Model</span>
+				</h3>
+				<input type="text" class="form-control" th:field="*{model}" />
+			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Nr polisy OC</span>
+				</h3>
+				<input type="text" class="form-control"
+					th:field="*{insurancePolicyNumber}" />
+			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Numer rejestracyjny</span>
+				</h3>
+				<input type="text" class="form-control"
+					th:field="*{registrationNumber}" />
+			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Przebieg</span>
+				</h3>
+				<input type="text" class="form-control" th:field="*{mileage}" />
+			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Pojemność skokowa silnika</span>
+				</h3>
+				<input type="text" class="form-control" th:field="*{ccm}" />
+			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Moc</span>
+				</h3>
+				<input type="text" class="form-control" th:field="*{horsePower}" />
+			</div>
+			<div class="form-group" th:if="${status} == 'employee'">
+				<h3>
+					<span class="label label-default">Ilość jazd próbnych</span>
+				</h3>
+				<input type="text" class="form-control"
+					th:field="*{numberOfTestDrives}" />
+			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Wartość pojazdu</span>
+				</h3>
+				<input type="text" class="form-control" th:field="*{value}" />
+			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Opis pojazdu</span>
+				</h3>
+				<textarea class="form-control" rows="5" th:field="*{description}"></textarea>
+			</div>
+			<div class="input-group">
+				<h3>
+					<span class="label label-default">Rodzaj paliwa</span>
+				</h3>
+				<select th:field="*{typeOfFuel}" class="form-control">
+					<option
+						th:each="typeOfFuel : ${T(org.tymfry.entity.Car.TypeOfFuel).values()}"
+						th:value="${typeOfFuel}" th:field="*{typeOfFuel}"
+						th:text="${typeOfFuel.description}"></option>
+				</select>
+			</div>
+
+			<div class="input-group">
+				<h3>
+					<span class="label label-default">Skrzynia biegów</span>
+				</h3>
+				<select th:field="*{gearbox}" class="form-control">
+					<option
+						th:each="gearbox : ${T(org.tymfry.entity.Car.Gearbox).values()}"
+						th:value="${gearbox}" th:field="*{gearbox}"
+						th:text="${gearbox.description}"></option>
+				</select>
+			</div>
+			<div class="input-group">
+				<h3>
+					<span class="label label-default">Typ samochodu</span>
+				</h3>
+				<select th:field="*{typeOfVehicle}" class="form-control">
+					<option
+						th:each="typeOfVehicle : ${T(org.tymfry.entity.Car.TypeOfVehicle).values()}"
+						th:value="${typeOfVehicle}" th:field="*{typeOfVehicle}"
+						th:text="${typeOfVehicle.description}"></option>
+				</select>
+			</div>
+			<div th:if="${status} == 'employee'">
+				<h3>
+					<span class="label label-default">Wybierz pochodzenie
+						pojazdu</span>
+				</h3>
+				<div class="radio">
+					<label><input type="radio" th:value="true"
+						th:field="*{dealerCar}" name="" />Pojazd sprzedany komisowi</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" th:value="false"
+						th:field="*{dealerCar}" name="" />Pojazd wystawiony przez klienta</label>
+				</div>
+				<h3>
+					<span class="label label-default">Zatwierdz pojazd do
+						sprzedaży lub poczekalni</span>
+				</h3>
+				<div class="radio">
+					<label><input type="radio" th:value="true"
+						th:field="*{accepted}" name="" />Wystaw pojazd na sprzedaż</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" th:value="false"
+						th:field="*{accepted}" name="" />Wystaw pojazd do poczekalni</label>
+				</div>
+			</div>
+
+			<div>
+				<input type="hidden" th:value="${dealerCar}" name="dealerCar" />
+			</div>
+
+			<div>
+				<input type="hidden" th:value="${accepted}" name="accepted" />
+			</div>
+			<div th:if="${status} == 'userCession' or 'userSell'">
+				<input type="hidden" th:value="${numberOfTestDrives}" name="numberOfTestDrives" />
+			</div>
+
+			<div class="col-md-30">
+				<button type="submit" class="btn btn-primary navbar-right submit"
+					value="Zapisz">Dodaj pojazd</button>
+			</div>
+
+
+
+
 		</form>
-		
-  
 	</div>
+
+
 
 	<script
 		th:src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

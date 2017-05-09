@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -22,57 +22,62 @@
 				</button>
 				<a class="navbar-brand" th:href="@{/}">Komis</a>
 			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="nav navbar-nav navbar-left">
+				<button type="button" class="btn btn-danger navbar-btn">Wyloguj</button>
+			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-					<li><a href="#">Link</a></li>
+
+
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Dropdown <span class="caret"></span></a>
+						aria-expanded="false">Panel Klienta<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a th:href="@{/show-all-cars}">Pojazdy</a></li>
-							<li><a th:href="@{/show-all-customers}">Klienci</a></li>
-							<li><a th:href="@{/show-all-cessioned-cars}">Pojazdy wystawione przez komis</a></li>
-							<li><a th:href="@{/show-all-customer-cars}">Pojazdy wystawione przez klientów komisu</a></li>
-							<li><a th:href="@{/get-all-cars-for-approval}">Pojazdy do zatwierdzenia przez komis</a></li>
-							<li><a th:href="@{/show-all-sold-cars}">Pojazdy sprzedane przez komis</a></li>
+							<li><a th:href="@{/add-car/1}">Wystaw pojazd na sprzedaż</a></li>
+							<li><a th:href="@{/add-car/2}">Sprzedaj pojazd</a></li>
+							<li><a th:href="@{/}">Pokaż pojazdy wystawione przez klientów komisu</a></li>
+							<li><a th:href="@{/}">Pokaż pojazdy wystawione przez komis</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Panel Administracyjny<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/}">Dodaj klienta</a></li>
+							<li><a th:href="@{/add-car/3}">Dodaj pojazd</a></li>
+							<li><a th:href="@{/}">Pokaż pojazdy wystawione przez
+									komis</a></li>
+							<li><a th:href="@{/}">Pokaż pojazdy wystawione przez
+									klientów komisu</a></li>
+							<li><a th:href="@{/}">Pokaż sprzedane pojazdy</a></li>
+							<li><a th:href="@{/}">Zatwierdz pojazd do wystawienia</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="#">Separated link</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="#">One more separated link</a></li>
 						</ul></li>
 				</ul>
-				<form class="navbar-form navbar-left">
+				<form class="navbar-form navbar-right">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search" />
+						<input type="text" class="form-control" placeholder="Szukaj" />
 					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button type="submit" class="btn btn-primary">Szukaj</button>
 				</form>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Link</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Dodaj<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a th:href="@{/add-car-by-customer}">Wystaw pojazd jako klient</a></li>
-							<li><a th:href="@{/add-car}">Pojazd jako pracownik komisu</a></li>
-							<li><a th:href="@{/sell-car-by-customer}">Sprzedaj pojazd komisowi</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-						</ul></li>
-				</ul>
+				<div class="nav navbar-nav navbar-right">
+					<button type="button" class="btn btn-primary navbar-btn">Zaloguj</button>
+					<button type="button" class="btn btn-primary navbar-btn">Rejestracja</button>
+
+				</div>
 			</div>
-			<!-- /.navbar-collapse -->
+
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-	
-	
-	<h1 layout:fragment="header" class="page-header" id="home-header">Komis samochodowy</h1>
+	<h1 layout:fragment="header"></h1>
 	<div layout:fragment="content"></div>
 
 	<script

@@ -33,6 +33,13 @@ public class CarDto {
 								// vehicle on the sales list employee need to
 								// check data implemented by user.
 	private BigDecimal oldValue;
+	private Integer customer_id;
+	private String customerNumber;
+	private String surname;
+	private String name;
+	private String address;
+	private String nip;
+	private String pesel;
 
 	public Integer getId() {
 		return id;
@@ -194,5 +201,60 @@ public class CarDto {
 		this.oldValue = dealerValue;
 	}
 
-	
+	public Integer getCustomer_id() {
+		return customer_id;
+	}
+
+	public void setCustomer_id(Integer customer_id) {
+		this.customer_id = customer_id;
+	}
+
+	public String getCustomerNumber() {
+		return customerNumber;
+	}
+
+	public void setCustomerNumber(String customerNumber) {
+		this.customerNumber = customerNumber;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getNip() {
+		return nip;
+	}
+
+	public void setNip(String nip) {
+		this.nip = nip;
+	}
+
+	public String getPesel() {
+		return pesel;
+	}
+
+	public void setPesel(String pesel) {
+		this.pesel = pesel;
+	}
+
 }

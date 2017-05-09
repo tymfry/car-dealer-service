@@ -22,6 +22,39 @@ public class CarController {
 	@Autowired
 	private AgreementService agreementService;
 
+	@RequestMapping(value = "/add-car/{type}", method = RequestMethod.GET)
+	public ModelAndView addCarForm(@PathVariable("type") int type, ModelMap modelMap) {
+		if (type == 1) {
+			String status = "userCession";
+			boolean dealerCar = false;
+			boolean accepted = false;
+			int numberOfTestDrives = 0;
+			modelMap.addAttribute("carDto", new CarDto());
+			modelMap.addAttribute("status", status);
+			modelMap.addAttribute("dealerCar", dealerCar);
+			modelMap.addAttribute("accepted", accepted);
+			modelMap.addAttribute("numberOfTestDrives", numberOfTestDrives);
+		}
+		if (type == 2) {
+			String status = "userSell";
+			boolean dealerCar = true;
+			boolean accepted = false;
+			int numberOfTestDrives = 0;
+			modelMap.addAttribute("carDto", new CarDto());
+			modelMap.addAttribute("status", status);
+			modelMap.addAttribute("dealerCar", dealerCar);
+			modelMap.addAttribute("accepted", accepted);
+			modelMap.addAttribute("numberOfTestDrives", numberOfTestDrives);
+		}
+		if (type == 3) {
+			String status = "employee";
+			modelMap.addAttribute("carDto", new CarDto());
+			modelMap.addAttribute("status", status);
+		}
+		return new ModelAndView("car/addcar", modelMap);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping(value = "/show-all-cars", method = RequestMethod.GET)
 	public ModelAndView showAllCars(ModelMap modelMap) {
 		modelMap.addAttribute("carDto", carService.getAllCars());
@@ -46,12 +79,6 @@ public class CarController {
 		modelMap.addAttribute("dealerCar", dealerCar);
 		modelMap.addAttribute("accepted", accepted);
 		return new ModelAndView("customer/sellcarbycustomer", modelMap);
-	}
-
-	@RequestMapping(value = "/add-car", method = RequestMethod.GET)
-	public ModelAndView showAddCarForm(ModelMap modelMap) {
-		modelMap.addAttribute("carDto", new CarDto());
-		return new ModelAndView("car/addcar", modelMap);
 	}
 
 	@RequestMapping(value = "/add-car", method = RequestMethod.POST)
@@ -104,27 +131,27 @@ public class CarController {
 		modelMap.addAttribute("carDto", carService.getAllCustomerCars());
 		return new ModelAndView("car/customercars", modelMap);
 	}
-	
+
 	@RequestMapping(value = "/show-all-cars-for-customers", method = RequestMethod.GET)
 	public ModelAndView showAllCarsForCustomers(ModelMap modelMap) {
 		modelMap.addAttribute("carDto", carService.getAllCarsForCustomers());
 		return new ModelAndView("car/showcarstocustomers", modelMap);
 	}
-	
+
 	@RequestMapping(value = "/get-all-cars-for-approval", method = RequestMethod.GET)
 	public ModelAndView getAllCarsForApproval(ModelMap modelMap) {
 		modelMap.addAttribute("carDto", carService.getAllCarsForApproval());
 		return new ModelAndView("car/carsforapproval", modelMap);
 	}
-	
-	@RequestMapping(value = "/get-car-for-approve/{id}", method =  RequestMethod.GET)
+
+	@RequestMapping(value = "/get-car-for-approve/{id}", method = RequestMethod.GET)
 	public ModelAndView approveCarsFromCustomers(@PathVariable("id") int id, ModelMap modelMap) {
 		carService.approveCar(id);
 		agreementService.approveCar(id, "content");
 		modelMap.addAttribute("carDto", carService.getCarById(id));
 		return new ModelAndView("redirect:/get-all-cars-for-approval", modelMap);
 	}
-	
+
 	@RequestMapping(value = "/set-dealer-car-value/{id}", method = RequestMethod.GET)
 	public ModelAndView setDealerCarValue(@PathVariable("id") int id, ModelMap modelMap) {
 		CarDto carDto = carService.getCarById(id);
@@ -137,7 +164,5 @@ public class CarController {
 		carService.setValue(carDto);
 		return "redirect:/get-all-cars-for-approval";
 	}
-	
-	
-	
+
 }
