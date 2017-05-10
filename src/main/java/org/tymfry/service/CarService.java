@@ -64,7 +64,7 @@ public class CarService {
 		List<Car> cars = carRepository.findAll();
 		List<CarDto> carsDto = new ArrayList<>();
 		for (Car car : cars) {
-			if (car.isActive() == true) {
+			if (car.isActive() == true && car.isAccepted() == true) {
 				CarDto carDto = new CarDto();
 				carDto.setId(car.getId());
 				carDto.setVin(String.valueOf(car.getVin()));
@@ -121,6 +121,7 @@ public class CarService {
 
 	}
 
+	// do usunięcia
 	public List<CarDto> getAllCarsForCustomers() {
 		List<Car> cars = carRepository.findAll();
 		List<CarDto> soldCarsDto = new ArrayList<>();
@@ -183,21 +184,19 @@ public class CarService {
 
 	}
 
-	public void sellCar(int id) {
-		Car car = carRepository.getCarById(id);
-		car.setActive(false);
-		if (car.isDealerCar() == true) {
-			agreementService.sellDealerCar(id, "content");
-		} else {
-			agreementService.sellCustomerCar(id, "content");
-		}
-		carRepository.save(car);
-	}
-
 	public void approveCar(int id) {
 		Car car = carRepository.getCarById(id);
 		car.setAccepted(true);
-		carRepository.save(car); // tu dodać cesję
+		if (car.isDealerCar() == true) {
+			agreementService.buyCarAsDealer(id, "content"); //  umowa kupna
+															// pojazdu jako
+															// dealer
+		} else {
+			agreementService.cessionForDealer(id, "content"); //  umowa
+																// odstąpienia
+																// pojazdu
+		}
+		carRepository.save(car);
 	}
 
 	public void setValue(CarDto carDto) {
@@ -233,8 +232,8 @@ public class CarService {
 		carDto.setValue(car.getValue());
 		carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 		carDto.setDealerCar(car.isDealerCar());
-		if(car.isDealerCar() == false) {
-		carDto.setTelephoneNumber(car.getCustomer().getTelephoneNumber());
+		if (car.isDealerCar() == false) {
+			carDto.setTelephoneNumber(car.getCustomer().getTelephoneNumber());
 		}
 		return carDto;
 	}
@@ -243,7 +242,7 @@ public class CarService {
 		List<Car> cars = carRepository.findAll();
 		List<CarDto> soldCarsDto = new ArrayList<>();
 		for (Car car : cars) {
-			if (car.isActive() == true && car.isDealerCar() == true) {
+			if (car.isActive() == true && car.isDealerCar() == true && car.isAccepted() == true) {
 				CarDto carDto = new CarDto();
 				carDto.setId(car.getId());
 				carDto.setVin(car.getVin());
@@ -274,7 +273,7 @@ public class CarService {
 		List<Car> cars = carRepository.findAll();
 		List<CarDto> soldCarsDto = new ArrayList<>();
 		for (Car car : cars) {
-			if (car.isActive() == true && car.isDealerCar() == false) {
+			if (car.isActive() == true && car.isDealerCar() == false && car.isAccepted() == true) {
 				CarDto carDto = new CarDto();
 				carDto.setId(car.getId());
 				carDto.setVin(car.getVin());
@@ -299,6 +298,13 @@ public class CarService {
 		}
 		return soldCarsDto;
 
+	}
+	
+	public void sellCar(int id) {
+		Car car = carRepository.getCarById(id);
+		car.setActive(false);
+		carRepository.save(car);
+		agreementService.sellCar(id, "content");
 	}
 
 }

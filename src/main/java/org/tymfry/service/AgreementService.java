@@ -80,42 +80,41 @@ public class AgreementService {
 
 	}
 
-	public void sellDealerCar(int carId, String content) {
-		Sale sale = new Sale();
+	public void buyCarAsDealer(int carId, String content) {
+		Purchase purchase = new Purchase();
 		Agreement agreement = new Agreement();
-		sale.setDate(new Date());
+		purchase.setDate(new Date());
 		Car car = carRepository.getCarById(carId);
-		sale.setCar(car);
+		purchase.setCar(car);
 		agreement.setContent(content);
-		agreement.setSale(sale);
+		agreement.setPurchase(purchase);
 		BigDecimal value = car.getValue();
-		sale.setValue(value);
-		BigDecimal oldValue = car.getOldValue();
-		BigDecimal temp = value.subtract(oldValue);
-		BigDecimal percentage = temp.multiply(new BigDecimal(0.19));
-		BigDecimal dealerComission = temp.subtract(percentage);
-		agreement.setBigDecimal(dealerComission);
-		
-		saleRepository.save(sale);
+		purchase.setValue(value);
+	
+		purchaseRepository.save(purchase);
 		agreementRepository.save(agreement);
 	}
 
-	public void sellCustomerCar(int carId, String content) {
-		BigDecimal amount = null;
-		Sale sale = new Sale();
+	public void cessionForDealer(int carId, String content) {
+		Renouncement renouncement = new Renouncement();
 		Agreement agreement = new Agreement();
-		sale.setDate(new Date());
 		Car car = carRepository.getCarById(carId);
-		sale.setCar(car);
-		sale.setValue(car.getValue());
+		renouncement.setCar(car);
+		renouncement.setDate(new Date());
 		agreement.setContent(content);
-		agreement.setSale(sale);
-		BigDecimal valueOfCar = car.getValue();
-		amount = valueOfCar.multiply(new BigDecimal(0.2));
-		agreement.setBigDecimal(amount);
-
-		saleRepository.save(sale);
+		agreement.setRenouncement(renouncement);
+		
+		renouncementRepository.save(renouncement);
 		agreementRepository.save(agreement);
+	}
+	
+	public void sellCar(int carId, String content) {
+		Car car = carRepository.findOne(carId);
+		if(car.isDealerCar() == true) {
+			Sale sale = new Sale();
+			Agreement agreement = new Agreement();
+			//TODO
+		}
 	}
 
 }

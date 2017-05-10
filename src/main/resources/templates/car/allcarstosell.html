@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1 layout:fragment="header" id="persons-header">Lista pojazdów wystawionych przez komis</h1>
+	<h1 layout:fragment="header" id="persons-header"><span th:if="${status} == 'customersCars'">Lista pojazdów wystawionych przez klientów</span><span th:if="${status} == 'dealerCars'">Lista pojazdów wystawionych przez komis</span></h1>
 	<div layout:fragment="content" class="container">
 		<table class="table">
 			<thead>
@@ -30,7 +30,7 @@
 					<td th:text="${c.yearOfProduction}"></td>
 					<td th:text="${c.mileage}"></td>
 					<td th:text="${c.value} + ' zł'"></td>
-					<td><a th:href="@{'/car-details/' + ${c.id}}"><button type="button" class="btn btn-default">szczegóły</button></a></td>
+					<td><a th:href="@{'/car-details-sell/' + ${c.id}}"><button type="button" class="btn btn-primary">Szczegóły</button></a></td>
 				</tr>
 			</tbody>
 		</table>

@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1 layout:fragment="header" id="persons-header">Szczegóły pojazdu</h1>
+	<h1 layout:fragment="header" id="persons-header">Sprzedaj pojazd</h1>
 	<div layout:fragment="content" class="container">
 		<table class="table table-bordered">
 			<thead>
@@ -49,28 +49,23 @@
 		</div>
 		<div th:if="${carDto.dealerCar}">
 			<div class="alert alert-danger">
-				<strong>Uwaga!</strong> Właścicielem pojazdu jest komis, wprowadz
-				nową wartość pojazdu przed wystawieniem !
+				<strong>Uwaga!</strong> Właścicielem pojazdu jest komis !
 			</div>
 		</div>
 		<div th:unless="${carDto.dealerCar}">
 			<div class="alert alert-danger">
-				<strong>Uwaga!</strong> Właścicielem pojazdu jest osoba prywatna,
-				uzgodnij cenę przed wystawieniem ! <span
-					th:text="${carDto.telephoneNumber} + '.'"></span>
+				<strong>Uwaga!</strong> Właścicielem pojazdu jest osoba prywatna !
 			</div>
 		</div>
-		
-		
-		<div th:unless="${secondStatus}">
-			<a th:href="@{/show-cars/4}"><button type="button"
-					class="btn btn-primary">Powrót do listy</button></a> <a
-				th:href="@{/TODO}"><button type="button" class="btn btn-primary">Edycja
-					danych pojazdu</button></a> <a th:href="@{'/approve-car/' + ${carDto.id}}"><button
-					type="button" class="btn btn-primary navbar-right">Zaakceptuj
-					pojazd do sprzedaży</button></a>
-		</div>
-	
+
+
+
+		<a th:href="@{/show-all-cars-to-sell}"><button type="button"
+				class="btn btn-primary">Powrót do listy</button></a> 
+				<a th:href="@{'/sell-car/' + ${carDto.id}}"><button type="button"
+				class="btn btn-primary navbar-right">Sprzedaj pojazd</button></a>
+
+
 	</div>
 
 	<script

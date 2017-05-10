@@ -88,14 +88,20 @@ public class CarController {
 		}
 		if (type == 3) {
 			modelMap.addAttribute("carDto", carService.getAllSoldCars());
-		}
+		}                                                                //TODO przycisk szczegóły 
 		if (type == 4) {
 			String status = "employee";
 			modelMap.addAttribute("carDto", carService.getAllCarsForApproval());
 			modelMap.addAttribute("status", status);
 		}
-
+		
 		return new ModelAndView("car/showcars", modelMap);
+	}
+	
+	@RequestMapping(value = "/show-all-cars-to-sell", method = RequestMethod.GET)
+	public ModelAndView getAllCarsToSell(ModelMap modelMap) {
+		modelMap.addAttribute("carDto", carService.getAllCars());
+		return new ModelAndView("car/allcarstosell", modelMap);
 	}
 
 	@RequestMapping(value = "/car-details/{id}", method = RequestMethod.GET)
@@ -110,6 +116,26 @@ public class CarController {
 		CarDto carDto = carService.getCarById(id);
 		modelMap.addAttribute("carDto", carDto);
 		return new ModelAndView("car/cardetailsforemployee", modelMap);
+	}//TODO możliwość edycji przed wystawieniem pojazdu do sprzedaży (koniecznie kwota i reszta danych)
+	
+	@RequestMapping(value = "/approve-car/{id}", method = RequestMethod.GET)
+	public String sellCar(@PathVariable("id") int id) {
+		carService.approveCar(id);
+		return "redirect:/show-cars/4";
+	}
+	
+	@RequestMapping(value = "/car-details-sell/{id}", method = RequestMethod.GET)
+	public ModelAndView carDetailsSell(@PathVariable("id") int id, ModelMap modelMap) {
+		CarDto carDto = carService.getCarById(id);
+		modelMap.addAttribute("carDto", carDto);
+		return new ModelAndView("car/selldetails", modelMap);
+	}
+	
+	@RequestMapping(value = "/sell-car/{id}", method = RequestMethod.GET)
+	public String sellCar(@PathVariable("id") int id, ModelMap modelMap) {
+		carService.sellCar(id);
+		return "redirect:/show-all-cars-to-sell";
+		
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -140,11 +166,7 @@ public class CarController {
 		return new ModelAndView("car/soldcars", modelMap);
 	}
 
-	@RequestMapping(value = "/sell-car/{id}", method = RequestMethod.GET)
-	public String sellCar(@PathVariable("id") int id) {
-		carService.sellCar(id);
-		return "redirect:/show-all-cars";
-	}
+	
 
 	@RequestMapping(value = "/show-all-cessioned-cars", method = RequestMethod.GET)
 	public ModelAndView showAllCessionedCars(ModelMap modelMap) {

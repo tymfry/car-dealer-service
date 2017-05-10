@@ -32,7 +32,6 @@
 					<td th:text="${c.value} + ' zł'"></td>
 					<td th:if="${status} == 'employee'"><a th:href="@{'/car-details-employee/' + ${c.id}}"><button type="button" class="btn btn-primary">Szczegóły</button></a></td>
 					<td th:unless="${status} == 'employee'"><a th:href="@{'/car-details/' + ${c.id}}"><button type="button" class="btn btn-primary">Szczegóły</button></a></td>
-					
 				</tr>
 			</tbody>
 		</table>
