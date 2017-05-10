@@ -86,15 +86,30 @@ public class CarController {
 			modelMap.addAttribute("carDto", carService.getAllDealerCars());
 			modelMap.addAttribute("status", status);
 		}
+		if (type == 3) {
+			modelMap.addAttribute("carDto", carService.getAllSoldCars());
+		}
+		if (type == 4) {
+			String status = "employee";
+			modelMap.addAttribute("carDto", carService.getAllCarsForApproval());
+			modelMap.addAttribute("status", status);
+		}
 
 		return new ModelAndView("car/showcars", modelMap);
 	}
 
 	@RequestMapping(value = "/car-details/{id}", method = RequestMethod.GET)
-	public ModelAndView carDetails(@PathVariable("id") int id, ModelMap modelMap) {
+	public ModelAndView carDetailsForCustomer(@PathVariable("id") int id, ModelMap modelMap) {
 		CarDto carDto = carService.getCarById(id);
 		modelMap.addAttribute("carDto", carDto);
 		return new ModelAndView("car/cardetailsforcustomer", modelMap);
+	}
+	
+	@RequestMapping(value = "/car-details-employee/{id}", method = RequestMethod.GET)
+	public ModelAndView carDetailsForEmployee(@PathVariable("id") int id, ModelMap modelMap) {
+		CarDto carDto = carService.getCarById(id);
+		modelMap.addAttribute("carDto", carDto);
+		return new ModelAndView("car/cardetailsforemployee", modelMap);
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////

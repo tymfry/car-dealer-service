@@ -30,7 +30,9 @@
 					<td th:text="${c.yearOfProduction}"></td>
 					<td th:text="${c.mileage}"></td>
 					<td th:text="${c.value} + ' zł'"></td>
-					<td><a th:href="@{'/car-details/' + ${c.id}}"><button type="button" class="btn btn-primary">Szczegóły</button></a></td>
+					<td th:if="${status} == 'employee'"><a th:href="@{'/car-details-employee/' + ${c.id}}"><button type="button" class="btn btn-primary">Szczegóły</button></a></td>
+					<td th:unless="${status} == 'employee'"><a th:href="@{'/car-details/' + ${c.id}}"><button type="button" class="btn btn-primary">Szczegóły</button></a></td>
+					
 				</tr>
 			</tbody>
 		</table>
