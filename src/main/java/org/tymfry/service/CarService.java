@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tymfry.dto.CarDto;
 import org.tymfry.entity.Car;
+import org.tymfry.entity.Customer;
 import org.tymfry.repository.CarRepository;
+import org.tymfry.repository.CustomerRepository;
 
 @Service
 public class CarService {
@@ -16,6 +18,47 @@ public class CarService {
 	private CarRepository carRepository;
 	@Autowired
 	private AgreementService agreementService;
+	@Autowired
+	private CustomerRepository customerRepository;
+
+	public void sellToDealer(CarDto carDto) {
+		Car car = new Car();
+
+		car.setVin(carDto.getVin());
+		car.setYearOfProduction(Integer.valueOf(carDto.getYearOfProduction()));
+		car.setBrand(carDto.getBrand());
+		car.setModel(carDto.getModel());
+		car.setInsurancePolicyNumber(Long.valueOf(carDto.getInsurancePolicyNumber()));
+		car.setRegistrationNumber(carDto.getRegistrationNumber());
+		car.setTypeOfFuel(carDto.getTypeOfFuel());
+		car.setMileage(Integer.valueOf(carDto.getMileage()));
+		car.setCcm(Integer.valueOf(carDto.getCcm()));
+		car.setHorsePower(Integer.valueOf(carDto.getHorsePower()));
+		car.setGearbox(carDto.getGearbox());
+		car.setDescription(carDto.getDescription());
+		car.setNumberOfTestDrives(Integer.valueOf(carDto.getNumberOfTestDrives()));
+		car.setValue(carDto.getValue());
+		car.setOldValue(carDto.getValue());
+		car.setTypeOfVehicle(carDto.getTypeOfVehicle());
+		car.setActive(true);
+		car.setDealerCar(carDto.isDealerCar());
+		car.setAccepted(carDto.isAccepted());
+
+		if (carDto.isDealerCar() == false) {
+			Customer customer = new Customer();
+			customer.setCar(car);
+			customer.setName(carDto.getName());
+			customer.setSurname(carDto.getSurname());
+			customer.setAddress(carDto.getAddress());
+			customer.setPesel(Long.valueOf(carDto.getPesel()));
+			customer.setNip(carDto.getNip());
+			customer.setTelephoneNumber(carDto.getTelephoneNumber());
+			car.setCustomer(customer);
+			customerRepository.save(customer);
+		}
+		carRepository.save(car);
+
+	}
 
 	public List<CarDto> getAllCars() {
 		List<Car> cars = carRepository.findAll();
@@ -77,7 +120,7 @@ public class CarService {
 		return soldCarsDto;
 
 	}
-	
+
 	public List<CarDto> getAllCarsForCustomers() {
 		List<Car> cars = carRepository.findAll();
 		List<CarDto> soldCarsDto = new ArrayList<>();
@@ -108,7 +151,7 @@ public class CarService {
 		return soldCarsDto;
 
 	}
-	
+
 	public List<CarDto> getAllCarsForApproval() {
 		List<Car> cars = carRepository.findAll();
 		List<CarDto> soldCarsDto = new ArrayList<>();
@@ -143,20 +186,20 @@ public class CarService {
 	public void sellCar(int id) {
 		Car car = carRepository.getCarById(id);
 		car.setActive(false);
-		if(car.isDealerCar() == true) {
+		if (car.isDealerCar() == true) {
 			agreementService.sellDealerCar(id, "content");
 		} else {
 			agreementService.sellCustomerCar(id, "content");
 		}
 		carRepository.save(car);
 	}
-	
+
 	public void approveCar(int id) {
 		Car car = carRepository.getCarById(id);
 		car.setAccepted(true);
-		carRepository.save(car);     //tu dodać cesję
+		carRepository.save(car); // tu dodać cesję
 	}
-	
+
 	public void setValue(CarDto carDto) {
 		Car car = carRepository.getCarById(carDto.getId());
 		car.setValue(carDto.getValue());
@@ -166,30 +209,6 @@ public class CarService {
 	/*
 	 * A method that saves the car from customer.
 	 */
-
-	public void sellToDealer(CarDto carDto) {
-		Car car = new Car();
-		car.setVin(carDto.getVin());
-		car.setYearOfProduction(Integer.valueOf(carDto.getYearOfProduction()));
-		car.setBrand(carDto.getBrand());
-		car.setModel(carDto.getModel());
-		car.setInsurancePolicyNumber(Long.valueOf(carDto.getInsurancePolicyNumber()));
-		car.setRegistrationNumber(carDto.getRegistrationNumber());
-		car.setTypeOfFuel(carDto.getTypeOfFuel());
-		car.setMileage(Integer.valueOf(carDto.getMileage()));
-		car.setCcm(Integer.valueOf(carDto.getCcm()));
-		car.setHorsePower(Integer.valueOf(carDto.getHorsePower()));
-		car.setGearbox(carDto.getGearbox());
-		car.setDescription(carDto.getDescription());
-		car.setNumberOfTestDrives(Integer.valueOf(carDto.getNumberOfTestDrives()));
-		car.setValue(carDto.getValue());
-		car.setOldValue(carDto.getValue());
-		car.setTypeOfVehicle(carDto.getTypeOfVehicle());
-		car.setActive(true);
-		car.setDealerCar(carDto.isDealerCar());
-		car.setAccepted(carDto.isAccepted());
-		carRepository.save(car);
-	}
 
 	/*
 	 * Get car from data base by id.
@@ -214,11 +233,13 @@ public class CarService {
 		carDto.setValue(car.getValue());
 		carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 		carDto.setDealerCar(car.isDealerCar());
-
+		if(car.isDealerCar() == false) {
+		carDto.setTelephoneNumber(car.getCustomer().getTelephoneNumber());
+		}
 		return carDto;
 	}
 
-	public List<CarDto> getAllCessionedCars() {
+	public List<CarDto> getAllDealerCars() {
 		List<Car> cars = carRepository.findAll();
 		List<CarDto> soldCarsDto = new ArrayList<>();
 		for (Car car : cars) {

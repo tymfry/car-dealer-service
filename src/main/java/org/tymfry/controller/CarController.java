@@ -54,12 +54,50 @@ public class CarController {
 		return new ModelAndView("car/addcar", modelMap);
 	}
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////
-	@RequestMapping(value = "/show-all-cars", method = RequestMethod.GET)
-	public ModelAndView showAllCars(ModelMap modelMap) {
-		modelMap.addAttribute("carDto", carService.getAllCars());
-		return new ModelAndView("car/allcars", modelMap);
+	@RequestMapping(value = "/add-car", method = RequestMethod.POST)
+	public String addCar(@ModelAttribute("carDto") CarDto carDto) {
+		List<CarDto> soldCars = carService.getAllSoldCars();
+		for (CarDto car : soldCars) {
+			if (carDto.getVin().equals(car.getVin())) {
+				// TODO komunikat o samochodzie który nie może zostać ponownie
+				// zakupiony przez komis
+			}
+		}
+
+		List<CarDto> presentCars = carService.getAllCars();
+		for (CarDto car : presentCars) {
+			if (carDto.getVin().equals(car.getVin())) {
+				// TODO komunikat o duplikacie pojazdu w widoku
+			}
+		}
+		carService.sellToDealer(carDto);
+		return "redirect:/show-cars/1";
 	}
+
+	@RequestMapping(value = "/show-cars/{type}", method = RequestMethod.GET)
+	public ModelAndView showAllCars(@PathVariable("type") int type, ModelMap modelMap) {
+		if (type == 1) {
+			String status = "customersCars";
+			modelMap.addAttribute("carDto", carService.getAllCustomerCars());
+			modelMap.addAttribute("status", status);
+		}
+		if (type == 2) {
+			String status = "dealerCars";
+			modelMap.addAttribute("carDto", carService.getAllDealerCars());
+			modelMap.addAttribute("status", status);
+		}
+
+		return new ModelAndView("car/showcars", modelMap);
+	}
+
+	@RequestMapping(value = "/car-details/{id}", method = RequestMethod.GET)
+	public ModelAndView carDetails(@PathVariable("id") int id, ModelMap modelMap) {
+		CarDto carDto = carService.getCarById(id);
+		modelMap.addAttribute("carDto", carDto);
+		return new ModelAndView("car/cardetailsforcustomer", modelMap);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	@RequestMapping(value = "/add-car-by-customer", method = RequestMethod.GET)
 	public ModelAndView showAddCarFormToCustomer(ModelMap modelMap) {
@@ -81,33 +119,6 @@ public class CarController {
 		return new ModelAndView("customer/sellcarbycustomer", modelMap);
 	}
 
-	@RequestMapping(value = "/add-car", method = RequestMethod.POST)
-	public String addCar(@ModelAttribute("carDto") CarDto carDto) {
-		List<CarDto> soldCars = carService.getAllSoldCars();
-		for (CarDto car : soldCars) {
-			if (carDto.getVin().equals(car.getVin())) {
-				System.out.println("yes");
-			}
-		}
-
-		List<CarDto> presentCars = carService.getAllCars();
-		for (CarDto car : presentCars) {
-			if (carDto.getVin().equals(car.getVin())) {
-				System.out.println("yes");
-			}
-		}
-
-		carService.sellToDealer(carDto);
-		return "redirect:/show-all-cars";
-	}
-
-	@RequestMapping(value = "/car-details/{id}", method = RequestMethod.GET)
-	public ModelAndView carDetails(@PathVariable("id") int id, ModelMap modelMap) {
-		CarDto carDto = carService.getCarById(id);
-		modelMap.addAttribute("carDto", carDto);
-		return new ModelAndView("car/cardetails", modelMap);
-	}
-
 	@RequestMapping(value = "/show-all-sold-cars", method = RequestMethod.GET)
 	public ModelAndView showAllSoldCars(ModelMap modelMap) {
 		modelMap.addAttribute("carDto", carService.getAllSoldCars());
@@ -122,7 +133,7 @@ public class CarController {
 
 	@RequestMapping(value = "/show-all-cessioned-cars", method = RequestMethod.GET)
 	public ModelAndView showAllCessionedCars(ModelMap modelMap) {
-		modelMap.addAttribute("carDto", carService.getAllCessionedCars());
+		modelMap.addAttribute("carDto", carService.getAllDealerCars());
 		return new ModelAndView("car/dealercars", modelMap);
 	}
 

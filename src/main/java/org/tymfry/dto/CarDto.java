@@ -33,6 +33,7 @@ public class CarDto {
 								// vehicle on the sales list employee need to
 								// check data implemented by user.
 	private BigDecimal oldValue;
+
 	private Integer customer_id;
 	private String customerNumber;
 	private String surname;
@@ -40,6 +41,7 @@ public class CarDto {
 	private String address;
 	private String nip;
 	private String pesel;
+	private String telephoneNumber;
 
 	public Integer getId() {
 		return id;
@@ -255,6 +257,14 @@ public class CarDto {
 
 	public void setPesel(String pesel) {
 		this.pesel = pesel;
+	}
+
+	public String getTelephoneNumber() {
+		return telephoneNumber;
+	}
+
+	public void setTelephoneNumber(String telephoneNumber) {
+		this.telephoneNumber = telephoneNumber;
 	}
 
 }

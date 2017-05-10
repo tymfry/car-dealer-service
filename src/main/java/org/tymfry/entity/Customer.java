@@ -1,11 +1,11 @@
 package org.tymfry.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -26,9 +26,10 @@ public class Customer {
 	private String nip;
 	@Column
 	private Long pesel;
-	@OneToOne
-	@JoinColumn(name = "car_id")
+	@OneToOne(cascade = CascadeType.ALL, mappedBy="customer")
 	private Car car;
+	@Column
+	private String telephoneNumber;
 
 	public Integer getId() {
 		return id;
@@ -92,6 +93,14 @@ public class Customer {
 
 	public void setCar(Car car) {
 		this.car = car;
+	}
+
+	public String getTelephoneNumber() {
+		return telephoneNumber;
+	}
+
+	public void setTelephoneNumber(String telephoneNumber) {
+		this.telephoneNumber = telephoneNumber;
 	}
 
 }

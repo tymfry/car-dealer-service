@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="home">
+<head>
+<title>Komis Samochodowy</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1 layout:fragment="header" id="persons-header"><span th:if="${status} == 'customersCars'">Lista pojazdów wystawionych przez klientów</span><span th:if="${status} == 'dealerCars'">Lista pojazdów wystawionych przez komis</span></h1>
+	<div layout:fragment="content" class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Marka</th>
+					<th>Model</th>
+					<th>Rok</th>
+					<th>Przebieg</th>
+					<th>Cena</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="c : ${carDto}">
+					<td th:text="${c.brand}"></td>
+					<td th:text="${c.model}"></td>
+					<td th:text="${c.yearOfProduction}"></td>
+					<td th:text="${c.mileage}"></td>
+					<td th:text="${c.value} + ' zł'"></td>
+					<td><a th:href="@{'/car-details/' + ${c.id}}"><button type="button" class="btn btn-primary">Szczegóły</button></a></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<script
+		th:src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

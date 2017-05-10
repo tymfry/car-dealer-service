@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="home">
+<head>
+<title>Komis Samochodowy</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1 layout:fragment="header" id="persons-header">Szczegóły pojazdu</h1>
+	<div layout:fragment="content" class="container">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Marka</th>
+					<th>Model</th>
+					<th>Rok produkcji</th>
+					<th>Pojemność</th>
+					<th>Moc</th>
+					<th>Przebieg</th>
+					<th>Skrzynia biegów</th>
+					<th>Rodzaj paliwa</th>
+					<th>Nadwozie</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:object="${carDto}">
+					<td th:text="*{brand}"></td>
+					<td th:text="*{model}"></td>
+					<td th:text="*{yearOfProduction}"></td>
+					<td th:text="*{ccm}"></td>
+					<td th:text="*{horsePower}"></td>
+					<td th:text="*{mileage}"></td>
+					<td th:text="*{gearbox.description}"></td>
+					<td th:text="*{typeOfFuel.description}"></td>
+					<td th:text="*{typeOfVehicle.description}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div>
+			<label>Opis pojazdu:</label>
+			<div class="well well-lg">
+				<span th:text="${carDto.description}"></span>
+			</div>
+		</div>
+		<div th:if="${carDto.dealerCar}">
+			<div class="alert alert-info">
+				<strong>Uwaga!</strong> Właścicielem pojazdu jest komis, możesz umówić się na jazdę próbną dzwoniąc pod nasz numer 0700 000 000 ! 
+			</div>
+		</div>
+		<div th:unless="${carDto.dealerCar}">
+			<div class="alert alert-warning">
+				<strong>Uwaga!</strong> Właścicielem pojazdu jest osoba prywatna, możesz umówić się na jazdę próbną dzwoniąc na numer telefonu właściciela: <span th:text="${carDto.telephoneNumber} + '.'"></span> 
+			</div>
+		</div>
+		
+		<div th:if="${carDto.dealerCar}">
+			<a th:href="@{/show-cars/2}"><button type="button"
+					class="btn btn-primary">Powrót do listy</button></a>
+		</div>
+		<div th:unless="${carDto.dealerCar}">
+			<a th:href="@{/show-cars/1}"><button type="button"
+					class="btn btn-primary">Powrót do listy</button></a>
+		</div>
+		<div>
+			<a th:href="@{'/sell-car/' + ${carDto.id}}"><button type="button"
+					class="btn btn-default">Sprzedaj</button></a>
+		</div>
+
+	</div>
+
+	<script
+		th:src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
