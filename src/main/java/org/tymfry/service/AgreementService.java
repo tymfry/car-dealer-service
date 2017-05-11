@@ -61,10 +61,10 @@ public class AgreementService {
 			agreement.setContent("treść umowy kupna");
 			agreement.setPurchase(purchase);
 			agreement.setBigDecimal(car.getOldValue());
-			
+
 			purchaseRepository.save(purchase);
 			agreementRepository.save(agreement);
-			
+
 		} else {
 
 			Renouncement renouncement = new Renouncement();
@@ -90,7 +90,7 @@ public class AgreementService {
 		agreement.setPurchase(purchase);
 		BigDecimal value = car.getValue();
 		purchase.setValue(value);
-	
+
 		purchaseRepository.save(purchase);
 		agreementRepository.save(agreement);
 	}
@@ -103,17 +103,51 @@ public class AgreementService {
 		renouncement.setDate(new Date());
 		agreement.setContent(content);
 		agreement.setRenouncement(renouncement);
-		
+
 		renouncementRepository.save(renouncement);
 		agreementRepository.save(agreement);
 	}
-	
+
 	public void sellCar(int carId, String content) {
 		Car car = carRepository.findOne(carId);
-		if(car.isDealerCar() == true) {
+		if (car.isDealerCar() == true) {
+			Sale sale = new Sale();
+			BigDecimal amount = null;
+			BigDecimal oldValue = car.getOldValue();
+			BigDecimal value = car.getValue();
+			BigDecimal temp = value.subtract(oldValue);
+			amount = temp;
+			temp.multiply(new BigDecimal(0.19));
+
+			Agreement agreement = new Agreement();
+			sale.setValue(value);
+			sale.setDate(new Date());
+			sale.setCar(car);
+			agreement.setContent("content");
+			agreement.setBigDecimal(amount.subtract(temp)); // TODO
+															// setter/getter
+															// comission edit
+			agreement.setSale(sale);
+
+			saleRepository.save(sale);
+			agreementRepository.save(agreement);
+
+		} else {
 			Sale sale = new Sale();
 			Agreement agreement = new Agreement();
-			//TODO
+			BigDecimal carValue = car.getValue();
+			BigDecimal comissionTemp = carValue.multiply(new BigDecimal(0.2));
+			BigDecimal comission = comissionTemp.multiply(new BigDecimal(0.19));
+			sale.setCar(car);
+			sale.setDate(new Date());
+			sale.setValue(car.getValue());
+			agreement.setContent("content");
+			agreement.setBigDecimal(comission);
+			agreement.setSale(sale);
+
+			saleRepository.save(sale);
+			agreementRepository.save(agreement);
+
 		}
 	}
 
