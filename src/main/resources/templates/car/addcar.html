@@ -72,13 +72,13 @@
 				</h3>
 				<input type="text" class="form-control" th:field="*{horsePower}" />
 			</div>
-			<!-- <div class="form-group" th:if="${status} == 'employee'">
+			<div class="form-group" th:if="${status} == 'employee'">
 				<h3>
 					<span class="label label-default">Ilość jazd próbnych</span>
 				</h3>
 				<input type="text" class="form-control"
 					th:field="*{numberOfTestDrives}" />
-			</div> -->
+			</div>
 			<div class="form-group">
 				<h3>
 					<span class="label label-default">Wartość pojazdu</span>
@@ -138,6 +138,51 @@
 					<label><input type="radio" th:value="false"
 						th:field="*{dealerCar}" name="" />Pojazd wystawiony przez klienta</label>
 				</div>
+				<input type="button" id="summary" class="btn btn-primary"
+					value="Dodaj użytkownika" />
+				<div style="display: none;" id="customer">
+				<input type="button" id="summaryhide" class="btn btn-primary"
+					value="Ukryj formularz" />
+					<div class="form-group">
+						<h1 id="phead">Podaj dane właściciela pojazdu</h1>
+						<h3>
+							<span class="label label-default">Imię</span>
+						</h3>
+						<input type="text" class="form-control" th:field="*{name}" />
+					</div>
+					<div class="form-group">
+						<h3>
+							<span class="label label-default">Nazwisko</span>
+						</h3>
+						<input type="text" class="form-control" th:field="*{surname}" />
+					</div>
+					<div class="form-group">
+						<h3>
+							<span class="label label-default">Adres</span>
+						</h3>
+						<input type="text" class="form-control" th:field="*{address}" />
+					</div>
+					<div class="form-group">
+						<h3>
+							<span class="label label-default">Pesel</span>
+						</h3>
+						<input type="text" class="form-control" th:field="*{pesel}" />
+					</div>
+					<div class="form-group">
+						<h3>
+							<span class="label label-default">Nip</span>
+						</h3>
+						<input type="text" class="form-control" th:field="*{nip}" />
+					</div>
+					<div class="form-group">
+						<h3>
+							<span class="label label-default">Numer kontaktowy</span>
+						</h3>
+						<input type="text" class="form-control"
+							th:field="*{telephoneNumber}" />
+					</div>
+
+				</div>
 				<h3>
 					<span class="label label-default">Zatwierdz pojazd do
 						sprzedaży lub poczekalni</span>
@@ -166,42 +211,43 @@
 
 			<div th:if="${status} == 'userCession'">
 				<div class="form-group">
-							<h1 id="phead">Podaj dane właściciela pojazdu</h1>
+					<h1 id="phead">Podaj dane właściciela pojazdu</h1>
 					<h3>
 						<span class="label label-default">Imię</span>
 					</h3>
 					<input type="text" class="form-control" th:field="*{name}" />
 				</div>
 				<div class="form-group">
-				<h3>
-					<span class="label label-default">Nazwisko</span>
-				</h3>
-				<input type="text" class="form-control" th:field="*{surname}" />
-			</div>
-			<div class="form-group">
-				<h3>
-					<span class="label label-default">Adres</span>
-				</h3>
-				<input type="text" class="form-control" th:field="*{address}" />
-			</div>
-			<div class="form-group">
-				<h3>
-					<span class="label label-default">Pesel</span>
-				</h3>
-				<input type="text" class="form-control" th:field="*{pesel}" />
-			</div>
-			<div class="form-group">
-				<h3>
-					<span class="label label-default">Nip</span>
-				</h3>
-				<input type="text" class="form-control" th:field="*{nip}" />
-			</div>
-			<div class="form-group">
-				<h3>
-					<span class="label label-default">Numer kontaktowy</span>
-				</h3>
-				<input type="text" class="form-control" th:field="*{telephoneNumber}" />
-			</div>
+					<h3>
+						<span class="label label-default">Nazwisko</span>
+					</h3>
+					<input type="text" class="form-control" th:field="*{surname}" />
+				</div>
+				<div class="form-group">
+					<h3>
+						<span class="label label-default">Adres</span>
+					</h3>
+					<input type="text" class="form-control" th:field="*{address}" />
+				</div>
+				<div class="form-group">
+					<h3>
+						<span class="label label-default">Pesel</span>
+					</h3>
+					<input type="text" class="form-control" th:field="*{pesel}" />
+				</div>
+				<div class="form-group">
+					<h3>
+						<span class="label label-default">Nip</span>
+					</h3>
+					<input type="text" class="form-control" th:field="*{nip}" />
+				</div>
+				<div class="form-group">
+					<h3>
+						<span class="label label-default">Numer kontaktowy</span>
+					</h3>
+					<input type="text" class="form-control"
+						th:field="*{telephoneNumber}" />
+				</div>
 			</div>
 
 			<div class="col-md-30">
@@ -220,5 +266,6 @@
 	<script
 		th:src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/myscript.js}"></script>
 </body>
 </html>

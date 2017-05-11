@@ -21,7 +21,7 @@ public class CarDto {
 	private String horsePower;
 	private Gearbox gearbox;
 	private String description;
-	private String numberOfTestDrives;
+	private int numberOfTestDrives;
 	private BigDecimal value;
 	private boolean active; // car is available to buy when true, when false
 							// employee can saw cars "/show-all-sold-cars",
@@ -147,11 +147,11 @@ public class CarDto {
 		this.description = description;
 	}
 
-	public String getNumberOfTestDrives() {
+	public int getNumberOfTestDrives() {
 		return numberOfTestDrives;
 	}
 
-	public void setNumberOfTestDrives(String numberOfTestDrives) {
+	public void setNumberOfTestDrives(int numberOfTestDrives) {
 		this.numberOfTestDrives = numberOfTestDrives;
 	}
 

@@ -79,7 +79,7 @@ public class CarService {
 				carDto.setHorsePower(String.valueOf(car.getHorsePower()));
 				carDto.setGearbox(car.getGearbox());
 				carDto.setDescription(car.getDescription());
-				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
+				carDto.setNumberOfTestDrives(car.getNumberOfTestDrives());
 				carDto.setValue(car.getValue());
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 				carDto.setDealerCar(car.isDealerCar());
@@ -109,7 +109,7 @@ public class CarService {
 				carDto.setHorsePower(String.valueOf(car.getHorsePower()));
 				carDto.setGearbox(car.getGearbox());
 				carDto.setDescription(car.getDescription());
-				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
+				carDto.setNumberOfTestDrives(car.getNumberOfTestDrives());
 				carDto.setValue(car.getValue());
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 				carDto.setDealerCar(car.isDealerCar());
@@ -141,7 +141,7 @@ public class CarService {
 				carDto.setHorsePower(String.valueOf(car.getHorsePower()));
 				carDto.setGearbox(car.getGearbox());
 				carDto.setDescription(car.getDescription());
-				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
+				carDto.setNumberOfTestDrives(car.getNumberOfTestDrives());
 				carDto.setValue(car.getValue());
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 				carDto.setDealerCar(car.isDealerCar());
@@ -172,7 +172,7 @@ public class CarService {
 				carDto.setHorsePower(String.valueOf(car.getHorsePower()));
 				carDto.setGearbox(car.getGearbox());
 				carDto.setDescription(car.getDescription());
-				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
+				carDto.setNumberOfTestDrives(car.getNumberOfTestDrives());
 				carDto.setValue(car.getValue());
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 				carDto.setDealerCar(car.isDealerCar());
@@ -228,7 +228,7 @@ public class CarService {
 		carDto.setHorsePower(String.valueOf(car.getHorsePower()));
 		carDto.setGearbox(car.getGearbox());
 		carDto.setDescription(car.getDescription());
-		carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
+		carDto.setNumberOfTestDrives(car.getNumberOfTestDrives());
 		carDto.setValue(car.getValue());
 		carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 		carDto.setDealerCar(car.isDealerCar());
@@ -257,7 +257,7 @@ public class CarService {
 				carDto.setHorsePower(String.valueOf(car.getHorsePower()));
 				carDto.setGearbox(car.getGearbox());
 				carDto.setDescription(car.getDescription());
-				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
+				carDto.setNumberOfTestDrives(car.getNumberOfTestDrives());
 				carDto.setValue(car.getValue());
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 				carDto.setDealerCar(car.isDealerCar());
@@ -288,7 +288,7 @@ public class CarService {
 				carDto.setHorsePower(String.valueOf(car.getHorsePower()));
 				carDto.setGearbox(car.getGearbox());
 				carDto.setDescription(car.getDescription());
-				carDto.setNumberOfTestDrives(String.valueOf(car.getNumberOfTestDrives()));
+				carDto.setNumberOfTestDrives(car.getNumberOfTestDrives());
 				carDto.setValue(car.getValue());
 				carDto.setTypeOfVehicle(car.getTypeOfVehicle());
 				carDto.setDealerCar(car.isDealerCar());

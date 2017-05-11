@@ -60,21 +60,30 @@
 					th:text="${carDto.telephoneNumber} + '.'"></span>
 			</div>
 		</div>
-		
-		
+
+
 		<div th:unless="${secondStatus}">
 			<a th:href="@{/show-cars/4}"><button type="button"
 					class="btn btn-primary">Powrót do listy</button></a> <a
-				th:href="@{/TODO}"><button type="button" class="btn btn-primary">Edycja
-					danych pojazdu</button></a> <a th:href="@{'/approve-car/' + ${carDto.id}}"><button
+				th:href="@{/TODO}"> </a> <input type="button"
+				class="btn btn-primary" id="showform" value="Wprowadz cenę sprzedaży" /> <a
+				th:href="@{'/approve-car/' + ${carDto.id}}"><button
 					type="button" class="btn btn-primary navbar-right">Zaakceptuj
 					pojazd do sprzedaży</button></a>
 		</div>
-	
+
+	</div>
+
+	<div class="form-group" id="showvalue" style="display: none;">
+		<h3>
+			<span class="label label-default">Nowa wartość pojazdu</span>
+		</h3>
+		<input type="text" class="form-control" th:field="*{value}" />
 	</div>
 
 	<script
 		th:src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/myscript.js}"></script>
 </body>
 </html>
