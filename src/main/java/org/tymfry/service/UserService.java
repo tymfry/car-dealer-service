@@ -1,5 +1,7 @@
 package org.tymfry.service;
 
+import java.util.HashSet;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,9 +27,15 @@ public class UserService {
 		user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
 		user.setPasswordConfirm(bCryptPasswordEncoder.encode(userDto.getPasswordConfirm()));
 		user.setEmail(userDto.getEmail());
+		user.setRoles(new HashSet<>());
 		Role userRole = roleRepository.findOne(1);
 		user.getRoles().add(userRole);
+		user.setAccountNonExpired(true);
+		user.setAccountNonLocked(true);
+		user.setEnbaled(true);
+		
 		
 		userRepository.save(user);
+		
 	}
 }

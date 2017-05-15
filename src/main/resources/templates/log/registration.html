@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="home">
+<head>
+<title>Komis Samochodowy</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1 layout:fragment="header" id="persons-header"></h1>
+	<div layout:fragment="content" class="container">
+
+
+		<div class="container">
+			<div class="row main">
+				<div class="panel-heading">
+					<div class="panel-title text-center">
+						<h1 class="title">Zarejestruj</h1>
+						<hr />
+					</div>
+				</div>
+				<div class="main-login main-center">
+					<form class="form-horizontal" method="post" th:action="@{/registration}" th:object="${userDto}">
+
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Nazwa użytkownika</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa"
+										aria-hidden="true"></i></span> <input type="text"
+										class="form-control" name="name" id="name"
+										placeholder="Wpisz nazwę użytkownika" th:field="*{username}" />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
+										type="text" class="form-control" name="email" id="email"
+										placeholder="Wpisz email" th:field="*{email}" />
+								</div>
+							</div>
+						</div>
+
+				
+
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Hasło</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
+										type="password" class="form-control" name="password"
+										id="password" placeholder="Wpisz hasło" th:field="*{password}" />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Potwierdz hasło</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
+										type="password" class="form-control" name="confirm"
+										id="confirm" placeholder="Potwierdz hasło" th:field="*{passwordConfirm}" />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<button type="submit"
+								class="btn btn-primary btn-lg btn-block login-button">Zarejestruj</button>
+						</div>
+						<div class="login-register">
+							<a href="index.php">Login</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script
+		th:src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/myscript.js}"></script>
+</body>
+</html>

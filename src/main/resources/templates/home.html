@@ -23,7 +23,7 @@
 				<a class="navbar-brand" th:href="@{/}">Komis</a>
 			</div>
 			<div class="nav navbar-nav navbar-left">
-				<button type="button" class="btn btn-danger navbar-btn">Wyloguj</button>
+				<a th:href="@{/logout}"><button type="button" class="btn btn-danger navbar-btn">Wyloguj</button></a>
 			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
@@ -63,8 +63,8 @@
 					<button type="submit" class="btn btn-primary">Szukaj</button>
 				</form>
 				<div class="nav navbar-nav navbar-right">
-					<button type="button" class="btn btn-primary navbar-btn">Zaloguj</button>
-					<button type="button" class="btn btn-primary navbar-btn">Rejestracja</button>
+					<a th:href="@{/login}" ><button type="button" class="btn btn-primary navbar-btn">Zaloguj</button></a>
+					<a th:href="@{/registration}"><button type="button" class="btn btn-primary navbar-btn">Rejestracja</button></a>
 
 				</div>
 			</div>

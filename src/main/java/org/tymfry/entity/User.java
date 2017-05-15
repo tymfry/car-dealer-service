@@ -27,8 +27,6 @@ public class User {
 	private String passwordConfirm;
 	@Column
 	private String email;
-	@Column
-	private String name;
 	@ManyToMany
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
@@ -79,14 +77,6 @@ public class User {
 		this.email = email;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -118,6 +108,5 @@ public class User {
 	public void setAccountNonLocked(boolean accountNonLocked) {
 		this.accountNonLocked = accountNonLocked;
 	}
-
 
 }
