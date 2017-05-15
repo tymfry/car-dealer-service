@@ -18,7 +18,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.authorizeRequests()
+		httpSecurity
+				/*.authorizeRequests()
 				.antMatchers("/", "/show-cars/1", "/show-cars/2", "/registration", "/js/**", "/css/**").permitAll()
 				.anyRequest().authenticated()
 				.antMatchers("/add-car/1", "/add-car/2").hasRole("USER")
@@ -31,6 +32,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			     .failureUrl("/login.html?error=true")
 			.and()
 				.logout().logoutUrl("/logout").permitAll();
+				*/
+		.authorizeRequests()
+		.antMatchers("/", "/js/**", "/css/**", "/show-cars/1", "/show-cars/2", "/registration").permitAll()
+		.anyRequest().authenticated();
+		
 	}
 }
 /*
