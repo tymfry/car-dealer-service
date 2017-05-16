@@ -35,7 +35,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				*/
 		.authorizeRequests()
 		.antMatchers("/", "/js/**", "/css/**", "/show-cars/1", "/show-cars/2", "/registration").permitAll()
-		.anyRequest().authenticated();
+		.antMatchers("/add-car/1", "/add-car/2").hasAuthority("ROLE_USER")
+		.antMatchers("/show-cars/3", "/show-cars/4", "/show-all-cars-to-sell", "/add-car/3").hasAuthority("ROLE_ADMIN")
+		.anyRequest().authenticated()
+		.and()
+		.csrf().disable()
+		.formLogin().permitAll()
+		.loginPage("/login").permitAll();
+		
 		
 	}
 }
