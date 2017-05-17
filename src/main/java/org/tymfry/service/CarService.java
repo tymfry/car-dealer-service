@@ -313,11 +313,11 @@ public class CarService {
 		agreementService.sellCar(id, "content");
 	}
 	
-	public List<CarDto> getUserCars() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String name = authentication.getName();
-		User user = userRepository.findByUsername(name);
-		
-	}
+//	public List<CarDto> getUserCars() {
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//		String name = authentication.getName();
+//		User user = userRepository.findByUsername(name);
+//		
+//	}
 
 }
