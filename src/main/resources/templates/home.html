@@ -24,7 +24,9 @@
 				<a class="navbar-brand" th:href="@{/}">Komis</a>
 			</div>
 			<div class="nav navbar-nav navbar-left">
-				<a th:href="@{/logout}"><button type="button" class="btn btn-danger navbar-btn">Wyloguj</button></a>
+				<a th:href="@{/logout}"><button
+						th:if="${#httpServletRequest.isRequestedSessionIdValid()}"
+						type="button" class="btn btn-danger navbar-btn">Wyloguj</button></a>
 			</div>
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
@@ -35,41 +37,52 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Panel Klienta<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a th:href="@{/add-car/1}">Wystaw pojazd na sprzedaż</a></li>
-							<li><a th:href="@{/add-car/2}">Sprzedaj pojazd</a></li>
-							<li><a th:href="@{/show-cars/1}">Pokaż pojazdy wystawione przez klientów komisu</a></li>
-							<li><a th:href="@{/show-cars/2}">Pokaż pojazdy wystawione przez komis</a></li>
-							<li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}" role="separator" class="divider"></li>
-							<li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}"><a href="@{/}">Moje pojazdy</a></li>
+							<li th:if="${#httpServletRequest.isRequestedSessionIdValid()}"><a
+								th:href="@{/add-car/1}">Wystaw pojazd na sprzedaż</a></li>
+							<li th:if="${#httpServletRequest.isRequestedSessionIdValid()}"><a
+								th:href="@{/add-car/2}">Sprzedaj pojazd</a></li>
+							<li><a th:href="@{/show-cars/1}">Pokaż pojazdy
+									wystawione przez klientów komisu</a></li>
+							<li><a th:href="@{/show-cars/2}">Pokaż pojazdy
+									wystawione przez komis</a></li>
+							<li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}"
+								role="separator" class="divider"></li>
+							<li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}"><a
+								href="@{/}">Moje pojazdy</a></li>
 						</ul></li>
-						
-						
-						
-						
 
 
 
 
-					<li class="dropdown" th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Panel Administracyjny<span class="caret"></span></a>
+
+
+
+
+					<li class="dropdown"
+						th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}"><a
+						href="#" class="dropdown-toggle" data-toggle="dropdown"
+						role="button" aria-haspopup="true" aria-expanded="false">Panel
+							Administracyjny<span class="caret"></span>
+					</a>
 						<ul class="dropdown-menu">
 							<li><a th:href="@{/}">Dodaj klienta</a></li>
 							<li><a th:href="@{/add-car/3}">Dodaj pojazd</a></li>
-							<li><a th:href="@{/show-all-cars-to-sell}">Pokaż wszystkie sprzedawane pojazdy</a></li>
+							<li><a th:href="@{/show-all-cars-to-sell}">Pokaż
+									wszystkie sprzedawane pojazdy</a></li>
 							<li><a th:href="@{/show-cars/3}">Pokaż sprzedane pojazdy</a></li>
-							<li><a th:href="@{/show-cars/4}">Zatwierdz pojazdy do sprzedaży</a></li>
+							<li><a th:href="@{/show-cars/4}">Zatwierdz pojazdy do
+									sprzedaży</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="#">Separated link</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="#">One more separated link</a></li>
 						</ul></li>
-						
+
 				</ul>
-			
-				
-				
-				
+
+
+
+
 				<form class="navbar-form navbar-right">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Szukaj" />
@@ -77,8 +90,12 @@
 					<button type="submit" class="btn btn-primary">Szukaj</button>
 				</form>
 				<div class="nav navbar-nav navbar-right">
-					<a th:href="@{/login}" ><button type="button" class="btn btn-primary navbar-btn">Zaloguj</button></a>
-					<a th:href="@{/registration}"><button type="button" class="btn btn-primary navbar-btn">Rejestracja</button></a>
+					<a th:href="@{/login}"><button
+							th:unless="${#httpServletRequest.isRequestedSessionIdValid()}"
+							type="button" class="btn btn-primary navbar-btn">Zaloguj</button></a>
+					<a th:href="@{/registration}"><button
+							th:unless="${#httpServletRequest.isRequestedSessionIdValid()}"
+							type="button" class="btn btn-primary navbar-btn">Rejestracja</button></a>
 
 				</div>
 			</div>
@@ -87,9 +104,22 @@
 		<!-- /.container-fluid -->
 	</nav>
 
-	
+
+
 	<h1 layout:fragment="header"></h1>
-	<div layout:fragment="content"></div>
+	<div layout:fragment="content">
+		<div th:unless="${#httpServletRequest.isRequestedSessionIdValid()}"
+			class="jumbotron container	panel panel-default">
+			<h1 class="home">Witaj!</h1>
+			<p class="home">Przeglądasz stronę niezalogowany, aby skorzystać
+				z pełni funkcjonalności strony załóż konto i zaloguj się!</p>
+		</div>
+		<div th:if="${#httpServletRequest.isRequestedSessionIdValid()}"
+			class="jumbotron container	panel panel-default">
+			<h1 class="home">Witaj! </h1>
+			<p class="home" th:text="${name}"></p>
+		</div>
+	</div>
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

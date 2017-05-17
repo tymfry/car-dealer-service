@@ -1,5 +1,8 @@
 package org.tymfry.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,5 +22,7 @@ public class TestController {
 	public ModelAndView showAddCarForm(ModelMap modelMap) {
 		modelMap.addAttribute("carDto", new CarDto());
 		return new ModelAndView("new/car/addcar", modelMap);
+		
+		//HttpServletRequestWrapper request = new HttpServletRequestWrapper(request).ge
 	}
 }

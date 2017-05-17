@@ -3,6 +3,8 @@ package org.tymfry.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.tymfry.dto.CarDto;
+import org.tymfry.entity.Customer;
+import org.tymfry.repository.UserRepository;
 import org.tymfry.service.AgreementService;
 import org.tymfry.service.CarService;
 
@@ -21,6 +25,8 @@ public class CarController {
 	private CarService carService;
 	@Autowired
 	private AgreementService agreementService;
+	@Autowired
+	private UserRepository userRepository;
 
 	@RequestMapping(value = "/add-car/{type}", method = RequestMethod.GET)
 	public ModelAndView addCarForm(@PathVariable("type") int type, ModelMap modelMap) {
@@ -91,6 +97,11 @@ public class CarController {
 		}                                                                //TODO przycisk szczegóły 
 		if (type == 4) {
 			String status = "employee";
+			modelMap.addAttribute("carDto", carService.getAllCarsForApproval());
+			modelMap.addAttribute("status", status);
+		}
+		if (type == 5) {
+			String status = "userCars";
 			modelMap.addAttribute("carDto", carService.getAllCarsForApproval());
 			modelMap.addAttribute("status", status);
 		}

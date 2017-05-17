@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.tymfry.dto.CarDto;
 import org.tymfry.entity.Car;
 import org.tymfry.entity.Customer;
+import org.tymfry.entity.User;
 import org.tymfry.repository.CarRepository;
 import org.tymfry.repository.CustomerRepository;
+import org.tymfry.repository.UserRepository;
 
 @Service
 public class CarService {
@@ -20,6 +24,8 @@ public class CarService {
 	private AgreementService agreementService;
 	@Autowired
 	private CustomerRepository customerRepository;
+	@Autowired
+	private UserRepository userRepository;
 
 	public void sellToDealer(CarDto carDto) {
 		Car car = new Car();
@@ -305,6 +311,13 @@ public class CarService {
 		car.setActive(false);
 		carRepository.save(car);
 		agreementService.sellCar(id, "content");
+	}
+	
+	public List<CarDto> getUserCars() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String name = authentication.getName();
+		User user = userRepository.findByUsername(name);
+		
 	}
 
 }

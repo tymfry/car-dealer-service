@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1 layout:fragment="header" id="persons-header"><span th:if="${status} == 'customersCars'">Lista pojazdów wystawionych przez klientów</span><span th:if="${status} == 'dealerCars'">Lista pojazdów wystawionych przez komis</span></h1>
+	<h1 layout:fragment="header" id="persons-header"><span th:if="${status} == 'customersCars'">Lista pojazdów wystawionych przez klientów</span><span th:if="${status} == 'dealerCars'">Lista pojazdów wystawionych przez komis</span><span th:if="${status} == 'userCars'">Lista pojazdów użytkownika <span th:text="${name}"></span></span></h1>
 	<div layout:fragment="content" class="container">
 		<table class="table">
 			<thead>

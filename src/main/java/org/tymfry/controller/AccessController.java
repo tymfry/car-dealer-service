@@ -37,7 +37,7 @@ public class AccessController {
 		} catch (ServletException e) {
 			e.printStackTrace();
 		}
-		return "home";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)

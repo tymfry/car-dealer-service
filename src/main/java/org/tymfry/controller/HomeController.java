@@ -26,6 +26,9 @@ public class HomeController {
 			if (userRepository.findByUsername(name).getCustomer() == null) {
 				modelMap.addAttribute("customerDto", new CustomerDto());
 				return new ModelAndView("customer/addcustomer", modelMap);
+			} else {
+				modelMap.addAttribute("name", name);
+				return new ModelAndView("home", modelMap);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
