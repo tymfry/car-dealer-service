@@ -16,6 +16,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
+	//Wrzucić na widok
 	@RequestMapping(value = "/show-all-customers", method = RequestMethod.GET)
 	public ModelAndView showAllCustomers(ModelMap modelMap) {
 		modelMap.addAttribute("customerDto", customerService.getAllCustomers());
@@ -27,11 +28,12 @@ public class CustomerController {
 		modelMap.addAttribute("customerDto", new CustomerDto());
 		return new ModelAndView("customer/addcustomer", modelMap);
 	}
-
+	
 	@RequestMapping(value = "/add-customer", method = RequestMethod.POST)
 	public String addCustomer(@ModelAttribute("customerDto") CustomerDto customerDto, ModelMap modelMap) {
 		customerService.saveCustomer(customerDto);
-		return "redirect:/show-all-customers";
+		return "redirect:/";
 	}
+	
 
 }
