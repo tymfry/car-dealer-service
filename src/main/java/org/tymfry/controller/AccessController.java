@@ -1,5 +1,6 @@
 package org.tymfry.controller;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,13 +30,18 @@ public class AccessController {
 	}
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public String register(@ModelAttribute("userDto") UserDto userDto) {
+	public String register(@ModelAttribute("userDto") UserDto userDto, HttpServletRequest request) {
 		userService.saveUser(userDto);
+		try {
+			request.login(userDto.getUsername(),userDto.getPassword());
+		} catch (ServletException e) {
+			e.printStackTrace();
+		}
 		return "home";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
+	public String login() {	
 		return "log/login";
 	}
 	

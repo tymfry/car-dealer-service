@@ -10,52 +10,61 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1 layout:fragment="header" id="persons-header">Dodaj klienta</h1>
+	<h1 layout:fragment="header" id="persons-header">Podaj swoje dane</h1>
 	<div layout:fragment="content" class="container">
 		<form id="carForm" th:action="@{/add-customer}"
 			th:object="${customerDto}" method="post">
 
-			<div class="row">
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Numer klienta"
-						th:field="*{customerNumber}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Imię"
-						th:field="*{name}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Nazwisko"
-						th:field="*{surname}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Adres"
-						th:field="*{address}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Nip"
-						th:field="*{nip}" />
-				</div>
-				<div class="col-md-3">
-					<input type="text" class="form-control" placeholder="Pesel"
-						th:field="*{pesel}" />
-				</div>
-
-
-
-
-
-				<div class="col-md-12">
-					<button type="submit" class="btn btn-default" value="Zapisz">Dodaj
-						klienta</button>
-				</div>
-
-
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Imię</span>
+				</h3>
+				<input type="text" class="form-control" th:field="*{name}" />
 			</div>
-		</form>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Nazwisko</span>
+				</h3>
+				<input type="text" class="form-control" th:field="*{surname}" />
+			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Adres</span>
+				</h3>
+				<input type="text" class="form-control" th:field="*{address}" />
+			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Pesel</span>
+				</h3>
+				<input type="text" class="form-control" th:field="*{pesel}" />
+			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Nip</span>
+				</h3>
+				<input type="text" class="form-control" th:field="*{nip}" />
+			</div>
+			<div class="form-group">
+				<h3>
+					<span class="label label-default">Numer kontaktowy</span>
+				</h3>
+				<input type="text" class="form-control"
+					th:field="*{telephoneNumber}" />
+			</div>
 
 
+
+			<div class="form-group navbar-right">
+				<button type="submit" class="btn btn-primary" value="Zapisz">Dodaj</button>
+			</div>
+			
+			</form>
 	</div>
+	
+
+
+	
 
 	<script
 		th:src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

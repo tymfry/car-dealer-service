@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -36,6 +37,9 @@ public class User {
 	private boolean accountNonExpired;
 	@Column
 	private boolean accountNonLocked;
+	@OneToOne
+	@JoinColumn(name = "customer_id")
+	private Customer customer;
 
 	public int getId() {
 		return id;
@@ -107,6 +111,14 @@ public class User {
 
 	public void setAccountNonLocked(boolean accountNonLocked) {
 		this.accountNonLocked = accountNonLocked;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 }

@@ -9,6 +9,7 @@ public class CustomerDto {
 	private String address;
 	private String nip;
 	private String pesel;
+	private String telephoneNumber;
 
 	public Integer getId() {
 		return id;
@@ -64,6 +65,14 @@ public class CustomerDto {
 
 	public void setPesel(String pesel) {
 		this.pesel = pesel;
+	}
+
+	public String getTelephoneNumber() {
+		return telephoneNumber;
+	}
+
+	public void setTelephoneNumber(String telephoneNumber) {
+		this.telephoneNumber = telephoneNumber;
 	}
 
 }

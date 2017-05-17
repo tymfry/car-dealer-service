@@ -30,6 +30,8 @@ public class Customer {
 	private Car car;
 	@Column
 	private String telephoneNumber;
+	@OneToOne(cascade = CascadeType.ALL, mappedBy="customer")
+	private User user;
 
 	public Integer getId() {
 		return id;
@@ -103,4 +105,13 @@ public class Customer {
 		this.telephoneNumber = telephoneNumber;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	
 }

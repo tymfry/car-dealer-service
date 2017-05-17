@@ -19,20 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity
-				/*.authorizeRequests()
-				.antMatchers("/", "/show-cars/1", "/show-cars/2", "/registration", "/js/**", "/css/**").permitAll()
-				.anyRequest().authenticated()
-				.antMatchers("/add-car/1", "/add-car/2").hasRole("USER")
-				.antMatchers("/add-car/3").hasRole("ADMIN")
-			.and()
-				.csrf().disable()
-				.formLogin().permitAll()
-				.loginPage("/login").permitAll()
-				.defaultSuccessUrl("/", true)
-			     .failureUrl("/login.html?error=true")
-			.and()
-				.logout().logoutUrl("/logout").permitAll();
-				*/
 		.authorizeRequests()
 		.antMatchers("/", "/js/**", "/css/**", "/show-cars/1", "/show-cars/2", "/registration").permitAll()
 		.antMatchers("/add-car/1", "/add-car/2").hasAuthority("ROLE_USER")
@@ -41,24 +27,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.and()
 		.csrf().disable()
 		.formLogin().permitAll()
-		.loginPage("/login").permitAll()
+		.loginPage("/login").defaultSuccessUrl("/").permitAll()
 		.and()
 		.logout().logoutUrl("/logout").permitAll();
 		
 		
 	}
 }
-/*
- *    .formLogin()
-        // #2
-        .loginPage("/login")
-        .failureUrl("/login?error")
-        // #3
-        .and()
-    // #4
-    .authorizeRequests()
-        // #5
-        .antMatchers("/signup","/about").permitAll()
-        .antMatchers("/admin/**").hasRole("ADMIN")
-        .anyRequest().authenticated();
-        */
+

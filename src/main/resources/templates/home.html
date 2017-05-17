@@ -39,8 +39,8 @@
 							<li><a th:href="@{/add-car/2}">Sprzedaj pojazd</a></li>
 							<li><a th:href="@{/show-cars/1}">Pokaż pojazdy wystawione przez klientów komisu</a></li>
 							<li><a th:href="@{/show-cars/2}">Pokaż pojazdy wystawione przez komis</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="@{/}">Moje pojazdy</a></li>
+							<li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}" role="separator" class="divider"></li>
+							<li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}"><a href="@{/}">Moje pojazdy</a></li>
 						</ul></li>
 						
 						
