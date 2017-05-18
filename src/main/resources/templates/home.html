@@ -40,7 +40,7 @@
 							<li th:if="${#httpServletRequest.isRequestedSessionIdValid()}"><a
 								th:href="@{/add-car/1}">Wystaw pojazd na sprzedaż</a></li>
 							<li th:if="${#httpServletRequest.isRequestedSessionIdValid()}"><a
-								th:href="@{/add-car/2}">Sprzedaj pojazd</a></li>
+								th:href="@{/add-car/2}">Sprzedaj pojazd komisowi</a></li>
 							<li><a th:href="@{/show-cars/1}">Pokaż pojazdy
 									wystawione przez klientów komisu</a></li>
 							<li><a th:href="@{/show-cars/2}">Pokaż pojazdy
@@ -48,7 +48,7 @@
 							<li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}"
 								role="separator" class="divider"></li>
 							<li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}"><a
-								href="@{/}">Moje pojazdy</a></li>
+								th:href="@{/show-cars/5}">Pojazd wystawiony na sprzedaż</a></li>
 						</ul></li>
 
 
@@ -72,10 +72,6 @@
 							<li><a th:href="@{/show-cars/3}">Pokaż sprzedane pojazdy</a></li>
 							<li><a th:href="@{/show-cars/4}">Zatwierdz pojazdy do
 									sprzedaży</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
 						</ul></li>
 
 				</ul>

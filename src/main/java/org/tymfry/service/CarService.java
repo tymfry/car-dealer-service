@@ -27,7 +27,7 @@ public class CarService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public void sellToDealer(CarDto carDto) {
+	public void saveCar(CarDto carDto) {
 		Car car = new Car();
 
 		car.setVin(carDto.getVin());
@@ -60,7 +60,15 @@ public class CarService {
 			customer.setNip(carDto.getNip());
 			customer.setTelephoneNumber(carDto.getTelephoneNumber());
 			car.setCustomer(customer);
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			String name = authentication.getName();
+			User user = userRepository.findByUsername(name);
+			user.setCustomer(customer);
+			customer.setUser(user);
+			
 			customerRepository.save(customer);
+			userRepository.save(user);
+			
 		}
 		carRepository.save(car);
 
@@ -313,11 +321,32 @@ public class CarService {
 		agreementService.sellCar(id, "content");
 	}
 	
-//	public List<CarDto> getUserCars() {
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		String name = authentication.getName();
-//		User user = userRepository.findByUsername(name);
-//		
-//	}
+	public CarDto getUserCar() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String name = authentication.getName();
+		User user = userRepository.findByUsername(name);
+		Car car = user.getCustomer().getCar();
+		CarDto carDto = new CarDto();
+		carDto.setId(car.getId());
+		carDto.setVin(car.getVin());
+		carDto.setYearOfProduction(String.valueOf(car.getYearOfProduction()));
+		carDto.setBrand(car.getBrand());
+		carDto.setModel(car.getModel());
+		carDto.setInsurancePolicyNumber(String.valueOf(car.getInsurancePolicyNumber()));
+		carDto.setRegistrationNumber(car.getRegistrationNumber());
+		carDto.setTypeOfFuel(car.getTypeOfFuel());
+		carDto.setMileage(String.valueOf(car.getMileage()));
+		carDto.setCcm(String.valueOf(car.getCcm()));
+		carDto.setHorsePower(String.valueOf(car.getHorsePower()));
+		carDto.setGearbox(car.getGearbox());
+		carDto.setDescription(car.getDescription());
+		carDto.setNumberOfTestDrives(car.getNumberOfTestDrives());
+		carDto.setValue(car.getValue());
+		carDto.setTypeOfVehicle(car.getTypeOfVehicle());
+		carDto.setDealerCar(car.isDealerCar());
+		
+		return carDto;
+		
+	}
 
 }

@@ -76,7 +76,7 @@ public class CarController {
 				// TODO komunikat o duplikacie pojazdu w widoku
 			}
 		}
-		carService.sellToDealer(carDto);
+		carService.saveCar(carDto);
 		return "redirect:/show-cars/1";
 	}
 
@@ -94,16 +94,17 @@ public class CarController {
 		}
 		if (type == 3) {
 			modelMap.addAttribute("carDto", carService.getAllSoldCars());
-		}                                                                //TODO przycisk szczegóły 
+		}                                                                 
 		if (type == 4) {
 			String status = "employee";
 			modelMap.addAttribute("carDto", carService.getAllCarsForApproval());
 			modelMap.addAttribute("status", status);
 		}
 		if (type == 5) {
-			String status = "userCars";
-			modelMap.addAttribute("carDto", carService.getAllCarsForApproval());
+			String status = "userCar";
+			modelMap.addAttribute("carDto", carService.getUserCar());
 			modelMap.addAttribute("status", status);
+			return new ModelAndView("car/cardetailsforcustomer", modelMap);
 		}
 		
 		return new ModelAndView("car/showcars", modelMap);
