@@ -2,6 +2,9 @@ package org.tymfry.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.tymfry.entity.Car.Gearbox;
 import org.tymfry.entity.Car.TypeOfFuel;
 import org.tymfry.entity.Car.TypeOfVehicle;
@@ -9,6 +12,8 @@ import org.tymfry.entity.Car.TypeOfVehicle;
 public class CarDto {
 
 	private Integer id;
+	@NotNull
+	@Size(min = 5, max = 20)
 	private String vin;
 	private String yearOfProduction;
 	private String brand;

@@ -2,18 +2,18 @@ package org.tymfry.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.tymfry.dto.CarDto;
-import org.tymfry.entity.Customer;
 import org.tymfry.repository.UserRepository;
 import org.tymfry.service.AgreementService;
 import org.tymfry.service.CarService;
@@ -61,7 +61,19 @@ public class CarController {
 	}
 
 	@RequestMapping(value = "/add-car", method = RequestMethod.POST)
-	public String addCar(@ModelAttribute("carDto") CarDto carDto) {
+	public String addCar(@ModelAttribute("carDto") @Valid CarDto carDto, BindingResult bindingResult) {
+		
+		if (bindingResult.hasErrors()) {
+			int type = 0;
+			if(!(carDto.isDealerCar())) {
+				type = 1;
+			}
+			if(carDto.isDealerCar()) {
+				type = 2;
+			}
+            return "redirect:/add-car/" + type;
+        }
+		
 		List<CarDto> soldCars = carService.getAllSoldCars();
 		for (CarDto car : soldCars) {
 			if (carDto.getVin().equals(car.getVin())) {
