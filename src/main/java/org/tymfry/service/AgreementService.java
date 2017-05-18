@@ -41,7 +41,6 @@ public class AgreementService {
 		Customer customer = customerRepository.findOne(customerId);
 		Car car = customer.getCar();
 		renouncement.setCar(car);
-		// renouncement.setAgreement(agreement);
 		agreement.setContent(content);
 		agreement.setRenouncement(renouncement);
 
@@ -124,9 +123,7 @@ public class AgreementService {
 			sale.setDate(new Date());
 			sale.setCar(car);
 			agreement.setContent("content");
-			agreement.setBigDecimal(amount.subtract(temp)); // TODO
-															// setter/getter
-															// comission edit
+			agreement.setBigDecimal(amount.subtract(temp)); 
 			agreement.setSale(sale);
 
 			saleRepository.save(sale);
