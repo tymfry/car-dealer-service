@@ -1,14 +1,26 @@
 package org.tymfry.dto;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class CustomerDto {
 
 	private Integer id;
 	private String customerNumber;
+	@NotEmpty(message = "Podaj nazwisko")
 	private String surname;
+	@NotEmpty(message = "Podaj imię")
 	private String name;
+	@NotEmpty(message = "Podaj adres")
 	private String address;
+	@NotEmpty(message = "Podaj NIP")
 	private String nip;
-	private String pesel;
+	@NotNull(message = "Wpisz PESEL")
+	@Digits(integer = 11, fraction = 0, message = "Podaj prawidłowy numer PESEL")
+	private Long pesel;
+	@NotEmpty(message = "Podaj numer kontaktowy")
 	private String telephoneNumber;
 
 	public Integer getId() {
@@ -59,11 +71,11 @@ public class CustomerDto {
 		this.nip = nip;
 	}
 
-	public String getPesel() {
+	public Long getPesel() {
 		return pesel;
 	}
 
-	public void setPesel(String pesel) {
+	public void setPesel(Long pesel) {
 		this.pesel = pesel;
 	}
 

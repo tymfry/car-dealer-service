@@ -12,8 +12,8 @@ import org.tymfry.entity.Car.TypeOfVehicle;
 public class CarDto {
 
 	private Integer id;
-	@NotNull
-	@Size(min = 5, max = 20)
+	@NotNull(message = "Wpisz numer VIN")
+	@Size(min=17, max=20, message = "Numer Vin powinien składać się z 17 znaków")
 	private String vin;
 	private String yearOfProduction;
 	private String brand;

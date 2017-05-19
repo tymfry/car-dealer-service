@@ -14,42 +14,23 @@
 	<div layout:fragment="content" class="container">
 		<form id="carForm" th:action="@{/add-car}" th:object="${carDto}"
 			method="post">
-			<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
-            <p th:text="#{form.hasErrors}">test error</p>
-        </div>
-        
-        
-      <!--   <div class="form-group" th:class="${#fields.hasErrors('name')} ? 'form-group has-error' : 'form-group'">
-            <label class="col-sm-2 control-label">Imię: </label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" th:field="*{name}" th:errorclass="has-error"/>
-                <span class="help-block">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
-                    </ul>
-                </span>
-            </div>
-        </div>
-        
-        --> 
-        
-        
-        
 
-			<div class="form-group" th:class="${#fields.hasErrors('vin')} ? 'form-group has-error' : 'form-group'">
+
+
+
+
+			<div class="form-group">
 				<h3>
 					<span class="label label-default">Numer VIN</span>
 				</h3>
-				<input type="text" class="form-control" th:field="*{vin}" th:errorclass="has-error"/>
-				 <span class="help-block">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('vin')}" th:text="${err}" />
-                    </ul>
-                </span>
+				<input type="text" class="form-control" th:field="*{vin}" />
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('vin')}">
+					<span th:errors="*{vin}">Error</span>
+				</div>
 			</div>
-			
-			
-			
+
+
+
 			<div class="form-group">
 				<h3>
 					<span class="label label-default">Rok produkcji</span>
@@ -102,7 +83,7 @@
 				<input type="text" class="form-control" th:field="*{horsePower}" />
 			</div>
 
-			 <div class="form-group" th:if="${status} == 'employee'">
+			<div class="form-group" th:if="${status} == 'employee'">
 
 				<h3>
 					<span class="label label-default">Ilość jazd próbnych</span>
@@ -174,8 +155,8 @@
 				<input type="button" id="summary" class="btn btn-primary"
 					value="Dodaj użytkownika" />
 				<div style="display: none;" id="customer">
-				<input type="button" id="summaryhide" class="btn btn-primary"
-					value="Ukryj formularz" />
+					<input type="button" id="summaryhide" class="btn btn-primary"
+						value="Ukryj formularz" />
 					<div class="form-group">
 						<h1 id="phead">Podaj dane właściciela pojazdu</h1>
 						<h3>
@@ -289,7 +270,7 @@
 			</div>
 
 
-			
+
 
 		</form>
 	</div>

@@ -32,7 +32,7 @@ public class CustomerService {
 			customerDto.setSurname(customer.getSurname());
 			customerDto.setAddress(customer.getAddress());
 			customerDto.setNip(customer.getNip());
-			customerDto.setPesel(String.valueOf(customer.getPesel()));
+			customerDto.setPesel(customer.getPesel());
 
 			customersDto.add(customerDto);
 		}

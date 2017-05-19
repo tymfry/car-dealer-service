@@ -20,30 +20,45 @@
 					<span class="label label-default">Imię</span>
 				</h3>
 				<input type="text" class="form-control" th:field="*{name}" />
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('name')}">
+					 <span th:errors="*{name}">Error</span>
+				</div>
 			</div>
 			<div class="form-group">
 				<h3>
 					<span class="label label-default">Nazwisko</span>
 				</h3>
 				<input type="text" class="form-control" th:field="*{surname}" />
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('surname')}">
+					 <span th:errors="*{surname}">Error</span>
+				</div>
 			</div>
 			<div class="form-group">
 				<h3>
 					<span class="label label-default">Adres</span>
 				</h3>
 				<input type="text" class="form-control" th:field="*{address}" />
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('address')}">
+					 <span th:errors="*{address}">Error</span>
+				</div>
 			</div>
 			<div class="form-group">
 				<h3>
 					<span class="label label-default">Pesel</span>
 				</h3>
 				<input type="text" class="form-control" th:field="*{pesel}" />
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('pesel')}">
+					 <span th:errors="*{pesel}">Error</span>
+				</div>
 			</div>
 			<div class="form-group">
 				<h3>
 					<span class="label label-default">Nip</span>
 				</h3>
 				<input type="text" class="form-control" th:field="*{nip}" />
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('nip')}">
+					 <span th:errors="*{nip}">Error</span>
+				</div>
 			</div>
 			<div class="form-group">
 				<h3>
@@ -51,6 +66,9 @@
 				</h3>
 				<input type="text" class="form-control"
 					th:field="*{telephoneNumber}" />
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('telephoneNumber')}">
+					 <span th:errors="*{telephoneNumber}">Error</span>
+				</div>
 			</div>
 
 
@@ -58,13 +76,13 @@
 			<div class="form-group navbar-right">
 				<button type="submit" class="btn btn-primary" value="Zapisz">Dodaj</button>
 			</div>
-			
-			</form>
+
+		</form>
 	</div>
-	
 
 
-	
+
+
 
 	<script
 		th:src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
