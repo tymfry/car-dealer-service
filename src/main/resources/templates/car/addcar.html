@@ -197,18 +197,10 @@
 					</div>
 
 				</div>
-				<h3>
-					<span class="label label-default">Zatwierdz pojazd do
-						sprzedaży lub poczekalni</span>
-				</h3>
-				<div class="radio">
-					<label><input type="radio" th:value="true"
-						th:field="*{accepted}" name="" />Wystaw pojazd na sprzedaż</label>
-				</div>
-				<div class="radio">
-					<label><input type="radio" th:value="false"
-						th:field="*{accepted}" name="" />Wystaw pojazd do poczekalni</label>
-				</div>
+				<div>
+				<input type="hidden" th:value="${accepted}" name="accepted" />
+			</div>
+				
 			</div>
 
 			<div>

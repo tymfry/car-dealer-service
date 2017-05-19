@@ -55,20 +55,40 @@ public class CarController {
 			}
 		}
 		if (type == 2) {
-			String status = "userSell";
-			boolean dealerCar = true;
-			boolean accepted = false;
-			int numberOfTestDrives = 0;
-			modelMap.addAttribute("carDto", new CarDto());
-			modelMap.addAttribute("status", status);
-			modelMap.addAttribute("dealerCar", dealerCar);
-			modelMap.addAttribute("accepted", accepted);
-			modelMap.addAttribute("numberOfTestDrives", numberOfTestDrives);
+			if (!modelMap.containsAttribute("carDto")) {
+				String status = "userSell";
+				boolean dealerCar = true;
+				boolean accepted = false;
+				int numberOfTestDrives = 0;
+				modelMap.addAttribute("carDto", new CarDto());
+				modelMap.addAttribute("status", status);
+				modelMap.addAttribute("dealerCar", dealerCar);
+				modelMap.addAttribute("accepted", accepted);
+				modelMap.addAttribute("numberOfTestDrives", numberOfTestDrives);
+			} else {
+				String status = "userSell";
+				boolean dealerCar = true;
+				boolean accepted = false;
+				int numberOfTestDrives = 0;
+				modelMap.addAttribute("status", status);
+				modelMap.addAttribute("dealerCar", dealerCar);
+				modelMap.addAttribute("accepted", accepted);
+				modelMap.addAttribute("numberOfTestDrives", numberOfTestDrives);
+			}
 		}
 		if (type == 3) {
-			String status = "employee";
-			modelMap.addAttribute("carDto", new CarDto());
-			modelMap.addAttribute("status", status);
+			if (!modelMap.containsAttribute("carDto")) {
+				String status = "employee";
+				boolean accepted = true;
+				modelMap.addAttribute("carDto", new CarDto());
+				modelMap.addAttribute("status", status);
+				modelMap.addAttribute("accepted", accepted);
+			} else {
+				String status = "employee";
+				boolean accepted = true;
+				modelMap.addAttribute("status", status);
+				modelMap.addAttribute("accepted", accepted);
+			}
 		}
 		return new ModelAndView("car/addcar", modelMap);
 	}
@@ -78,13 +98,16 @@ public class CarController {
 			RedirectAttributes attr) {
 
 		if (bindingResult.hasErrors()) {
-			if (carDto.isDealerCar() == false) {
-				attr.addFlashAttribute("org.springframework.validation.BindingResult.carDto", bindingResult);
-				attr.addFlashAttribute("carDto", carDto);
+			attr.addFlashAttribute("org.springframework.validation.BindingResult.carDto", bindingResult);
+			attr.addFlashAttribute("carDto", carDto);
+			if (carDto.isDealerCar() == false && !carDto.isAccepted() ) {
 				return "redirect:/add-car/1";
 			}
 			if (carDto.isDealerCar() == true) {
 				return "redirect:/add-car/2";
+			}
+			if (carDto.isAccepted() == true) {
+				return "redirect:/add-car/3";
 			}
 		}
 
