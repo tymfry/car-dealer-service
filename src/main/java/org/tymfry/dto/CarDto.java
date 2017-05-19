@@ -2,9 +2,11 @@ package org.tymfry.dto;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.tymfry.entity.Car.Gearbox;
 import org.tymfry.entity.Car.TypeOfFuel;
 import org.tymfry.entity.Car.TypeOfVehicle;
@@ -12,21 +14,37 @@ import org.tymfry.entity.Car.TypeOfVehicle;
 public class CarDto {
 
 	private Integer id;
-	@NotNull(message = "Wpisz numer VIN")
+	@NotNull(message = "Podaj numer VIN")
 	@Size(min=17, max=20, message = "Numer Vin powinien składać się z 17 znaków")
 	private String vin;
-	private String yearOfProduction;
+	@NotNull(message = "Podaj rok produkcji")
+	@Digits(integer = 4, fraction = 0, message = "Błędny rok produkcji")
+	private Integer yearOfProduction;
+	@NotEmpty(message = "Podaj markę pojazdu")
 	private String brand;
+	@NotEmpty(message = "Podaj model pojazdu")
 	private String model;
+	@NotEmpty(message = "Podaj numer polisy")
 	private String insurancePolicyNumber;
+	@NotEmpty(message = "Podaj numer rejestracyjny")
 	private String registrationNumber;
 	private TypeOfFuel typeOfFuel;
-	private String mileage;
-	private String ccm;
-	private String horsePower;
+	@NotNull(message = "Podaj przebieg")
+	@Digits(integer = 6, fraction = 0, message = "Błędna wartość")
+	private Integer mileage;
+	@NotNull(message = "Podaj pojemność")
+	@Digits(integer = 5, fraction = 0, message = "Błędna wartość")
+	private Integer ccm;
+	@NotNull(message = "Podaj Moc")
+	@Digits(integer = 3, fraction = 0, message = "Błędna wartość")
+	private Integer horsePower;
 	private Gearbox gearbox;
+	@Size(max = 500)
 	private String description;
+	@Digits(integer = 3, fraction = 0, message = "Błędna wartość")
 	private int numberOfTestDrives;
+	@NotNull(message = "Podaj cenę")
+	@Digits(integer = 6, fraction = 2, message = "Błędna wartość")
 	private BigDecimal value;
 	private boolean active; // car is available to buy when true, when false
 							// employee can saw cars "/show-all-sold-cars",
@@ -41,11 +59,18 @@ public class CarDto {
 
 	private Integer customer_id;
 	private String customerNumber;
+	@NotEmpty(message = "Podaj nazwisko")
 	private String surname;
+	@NotEmpty(message = "Podaj imię")
 	private String name;
+	@NotEmpty(message = "Podaj adres")
 	private String address;
+	@NotEmpty(message = "Podaj NIP")
 	private String nip;
-	private String pesel;
+	@NotNull(message = "Podaj PESEL")
+	@Digits(integer = 11, fraction = 0, message = "Nieprawidłowy PESEL")
+	private Long pesel;
+	@NotNull(message = "Podaj numer kontaktowy")
 	private String telephoneNumber;
 
 	public Integer getId() {
@@ -64,11 +89,11 @@ public class CarDto {
 		this.vin = vin;
 	}
 
-	public String getYearOfProduction() {
+	public Integer getYearOfProduction() {
 		return yearOfProduction;
 	}
 
-	public void setYearOfProduction(String yearOfProduction) {
+	public void setYearOfProduction(Integer yearOfProduction) {
 		this.yearOfProduction = yearOfProduction;
 	}
 
@@ -112,27 +137,27 @@ public class CarDto {
 		this.typeOfFuel = typeOfFuel;
 	}
 
-	public String getMileage() {
+	public Integer getMileage() {
 		return mileage;
 	}
 
-	public void setMileage(String mileage) {
+	public void setMileage(Integer mileage) {
 		this.mileage = mileage;
 	}
 
-	public String getCcm() {
+	public Integer getCcm() {
 		return ccm;
 	}
 
-	public void setCcm(String ccm) {
+	public void setCcm(Integer ccm) {
 		this.ccm = ccm;
 	}
 
-	public String getHorsePower() {
+	public Integer getHorsePower() {
 		return horsePower;
 	}
 
-	public void setHorsePower(String horsePower) {
+	public void setHorsePower(Integer horsePower) {
 		this.horsePower = horsePower;
 	}
 
@@ -256,11 +281,11 @@ public class CarDto {
 		this.nip = nip;
 	}
 
-	public String getPesel() {
+	public Long getPesel() {
 		return pesel;
 	}
 
-	public void setPesel(String pesel) {
+	public void setPesel(Long pesel) {
 		this.pesel = pesel;
 	}
 

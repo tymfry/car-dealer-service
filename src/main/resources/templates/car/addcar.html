@@ -37,6 +37,9 @@
 				</h3>
 				<input type="text" class="form-control"
 					th:field="*{yearOfProduction}" />
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('yearOfProduction')}">
+					<span th:errors="*{yearOfProduction}">Error</span>
+				</div>
 			</div>
 			<div class="form-group">
 				<h3>
