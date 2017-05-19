@@ -14,14 +14,42 @@
 	<div layout:fragment="content" class="container">
 		<form id="carForm" th:action="@{/add-car}" th:object="${carDto}"
 			method="post">
+			<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+            <p th:text="#{form.hasErrors}">test error</p>
+        </div>
+        
+        
+      <!--   <div class="form-group" th:class="${#fields.hasErrors('name')} ? 'form-group has-error' : 'form-group'">
+            <label class="col-sm-2 control-label">Imię: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{name}" th:errorclass="has-error"/>
+                <span class="help-block">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
+                    </ul>
+                </span>
+            </div>
+        </div>
+        
+        --> 
+        
+        
+        
 
-			<div class="form-group">
+			<div class="form-group" th:class="${#fields.hasErrors('vin')} ? 'form-group has-error' : 'form-group'">
 				<h3>
 					<span class="label label-default">Numer VIN</span>
 				</h3>
-				<input type="text" class="form-control" th:field="*{vin}" />
-				<span th:if="${#fields.hasErrors('vin')}" th:errors="*{vin}">Name Error</span>
+				<input type="text" class="form-control" th:field="*{vin}" th:errorclass="has-error"/>
+				 <span class="help-block">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('vin')}" th:text="${err}" />
+                    </ul>
+                </span>
 			</div>
+			
+			
+			
 			<div class="form-group">
 				<h3>
 					<span class="label label-default">Rok produkcji</span>
