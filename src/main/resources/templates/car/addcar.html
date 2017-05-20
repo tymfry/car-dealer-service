@@ -46,12 +46,18 @@
 					<span class="label label-default">Marka</span>
 				</h3>
 				<input type="text" class="form-control" th:field="*{brand}" />
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('brand')}">
+					<span th:errors="*{brand}">Error</span>
+				</div>
 			</div>
 			<div class="form-group">
 				<h3>
 					<span class="label label-default">Model</span>
 				</h3>
 				<input type="text" class="form-control" th:field="*{model}" />
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('model')}">
+					<span th:errors="*{model}">Error</span>
+				</div>
 			</div>
 			<div class="form-group">
 				<h3>
@@ -59,6 +65,9 @@
 				</h3>
 				<input type="text" class="form-control"
 					th:field="*{insurancePolicyNumber}" />
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('insurancePolicyNumber')}">
+					<span th:errors="*{insurancePolicyNumber}">Error</span>
+				</div>
 			</div>
 			<div class="form-group">
 				<h3>
@@ -66,24 +75,36 @@
 				</h3>
 				<input type="text" class="form-control"
 					th:field="*{registrationNumber}" />
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('registrationNumber')}">
+					<span th:errors="*{registrationNumber}">Error</span>
+				</div>
 			</div>
 			<div class="form-group">
 				<h3>
 					<span class="label label-default">Przebieg</span>
 				</h3>
 				<input type="text" class="form-control" th:field="*{mileage}" />
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('mileage')}">
+					<span th:errors="*{mileage}">Error</span>
+				</div>
 			</div>
 			<div class="form-group">
 				<h3>
 					<span class="label label-default">Pojemność skokowa silnika</span>
 				</h3>
 				<input type="text" class="form-control" th:field="*{ccm}" />
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('ccm')}">
+					<span th:errors="*{ccm}">Error</span>
+				</div>
 			</div>
 			<div class="form-group">
 				<h3>
 					<span class="label label-default">Moc</span>
 				</h3>
 				<input type="text" class="form-control" th:field="*{horsePower}" />
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('horsePower')}">
+					<span th:errors="*{horsePower}">Error</span>
+				</div>
 			</div>
 
 			<div class="form-group" th:if="${status} == 'employee'">
@@ -93,6 +114,9 @@
 				</h3>
 				<input type="text" class="form-control"
 					th:field="*{numberOfTestDrives}" />
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('numberOfTestDrives')}">
+					<span th:errors="*{numberOfTestDrives}">Error</span>
+				</div>
 
 			</div>
 
@@ -101,12 +125,18 @@
 					<span class="label label-default">Wartość pojazdu</span>
 				</h3>
 				<input type="text" class="form-control" th:field="*{value}" />
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('value')}">
+					<span th:errors="*{value}">Error</span>
+				</div>
 			</div>
 			<div class="form-group">
 				<h3>
 					<span class="label label-default">Opis pojazdu</span>
 				</h3>
 				<textarea class="form-control" rows="5" th:field="*{description}"></textarea>
+				<div class="alert alert-warning" th:if="${#fields.hasErrors('description')}">
+					<span th:errors="*{description}">Error</span>
+				</div>
 			</div>
 			<div class="input-group">
 				<h3>
@@ -166,30 +196,45 @@
 							<span class="label label-default">Imię</span>
 						</h3>
 						<input type="text" class="form-control" th:field="*{name}" />
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('name')}">
+					<span th:errors="*{name}">Error</span>
+				</div>
 					</div>
 					<div class="form-group">
 						<h3>
 							<span class="label label-default">Nazwisko</span>
 						</h3>
 						<input type="text" class="form-control" th:field="*{surname}" />
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('surname')}">
+					<span th:errors="*{surname}">Error</span>
+				</div>
 					</div>
 					<div class="form-group">
 						<h3>
 							<span class="label label-default">Adres</span>
 						</h3>
 						<input type="text" class="form-control" th:field="*{address}" />
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('address')}">
+					<span th:errors="*{address}">Error</span>
+				</div>
 					</div>
 					<div class="form-group">
 						<h3>
 							<span class="label label-default">Pesel</span>
 						</h3>
 						<input type="text" class="form-control" th:field="*{pesel}" />
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('pesel')}">
+					<span th:errors="*{pesel}">Error</span>
+				</div>
 					</div>
 					<div class="form-group">
 						<h3>
 							<span class="label label-default">Nip</span>
 						</h3>
 						<input type="text" class="form-control" th:field="*{nip}" />
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('nip')}">
+					<span th:errors="*{nip}">Error</span>
+				</div>
 					</div>
 					<div class="form-group">
 						<h3>
@@ -197,6 +242,9 @@
 						</h3>
 						<input type="text" class="form-control"
 							th:field="*{telephoneNumber}" />
+							<div class="alert alert-warning" th:if="${#fields.hasErrors('telephoneNumber')}">
+					<span th:errors="*{telephoneNumber}">Error</span>
+				</div>
 					</div>
 
 				</div>
@@ -225,30 +273,45 @@
 						<span class="label label-default">Imię</span>
 					</h3>
 					<input type="text" class="form-control" th:field="*{name}" />
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('name')}">
+					<span th:errors="*{name}">Error</span>
+				</div>
 				</div>
 				<div class="form-group">
 					<h3>
 						<span class="label label-default">Nazwisko</span>
 					</h3>
 					<input type="text" class="form-control" th:field="*{surname}" />
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('surname')}">
+					<span th:errors="*{surname}">Error</span>
+				</div>
 				</div>
 				<div class="form-group">
 					<h3>
 						<span class="label label-default">Adres</span>
 					</h3>
 					<input type="text" class="form-control" th:field="*{address}" />
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('address')}">
+					<span th:errors="*{address}">Error</span>
+				</div>
 				</div>
 				<div class="form-group">
 					<h3>
 						<span class="label label-default">Pesel</span>
 					</h3>
 					<input type="text" class="form-control" th:field="*{pesel}" />
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('pesel')}">
+					<span th:errors="*{pesel}">Error</span>
+				</div>
 				</div>
 				<div class="form-group">
 					<h3>
 						<span class="label label-default">Nip</span>
 					</h3>
 					<input type="text" class="form-control" th:field="*{nip}" />
+					<div class="alert alert-warning" th:if="${#fields.hasErrors('nip')}">
+					<span th:errors="*{nip}">Error</span>
+				</div>
 				</div>
 				<div class="form-group">
 					<h3>
@@ -256,6 +319,9 @@
 					</h3>
 					<input type="text" class="form-control"
 						th:field="*{telephoneNumber}" />
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('telephoneNumber')}">
+					<span th:errors="*{telephoneNumber}">Error</span>
+				</div>
 				</div>
 			</div>
 

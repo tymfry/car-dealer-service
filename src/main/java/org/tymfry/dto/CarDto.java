@@ -65,7 +65,6 @@ public class CarDto {
 	private String name;
 	@NotEmpty(message = "Podaj adres")
 	private String address;
-	@NotEmpty(message = "Podaj NIP")
 	private String nip;
 	@NotNull(message = "Podaj PESEL")
 	@Digits(integer = 11, fraction = 0, message = "Nieprawidłowy PESEL")
