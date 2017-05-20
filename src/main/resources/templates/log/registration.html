@@ -33,8 +33,13 @@
 										aria-hidden="true"></i></span> <input type="text"
 										class="form-control" name="name" id="name"
 										placeholder="Wpisz nazwę użytkownika" th:field="*{username}" />
+										
 								</div>
+								<div class="alert alert-warning" th:if="${#fields.hasErrors('username')}">
+					<span th:errors="*{username}">Error</span>
+				</div>
 							</div>
+							
 						</div>
 
 						<div class="form-group">
@@ -45,7 +50,11 @@
 										class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
 										type="text" class="form-control" name="email" id="email"
 										placeholder="Wpisz email" th:field="*{email}" />
+										
 								</div>
+								<div class="alert alert-warning" th:if="${#fields.hasErrors('email')}">
+					<span th:errors="*{email}">Error</span>
+				</div>
 							</div>
 						</div>
 
@@ -59,7 +68,11 @@
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										type="password" class="form-control" name="password"
 										id="password" placeholder="Wpisz hasło" th:field="*{password}" />
+										
 								</div>
+								<div class="alert alert-warning" th:if="${#fields.hasErrors('password')}">
+					<span th:errors="*{password}">Error</span>
+				</div>
 							</div>
 						</div>
 
@@ -71,7 +84,11 @@
 										class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 										type="password" class="form-control" name="confirm"
 										id="confirm" placeholder="Potwierdz hasło" th:field="*{passwordConfirm}" />
+										
 								</div>
+								<div class="alert alert-warning" th:if="${#fields.hasErrors('passwordConfirm')}">
+					<span th:errors="*{passwordConfirm}">Error</span>
+				</div>
 							</div>
 						</div>
 
