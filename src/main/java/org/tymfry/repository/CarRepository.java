@@ -12,5 +12,7 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
 	
 	@Query("from Car c where c.id = :id")
 	Car getCarById(@Param("id") int id);
+	@Query("from Car c where c.vin = :vin")
+	Car getCarByVin(@Param("vin") String vin);
 
 }
