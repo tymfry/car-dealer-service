@@ -103,7 +103,7 @@ public class CarService {
 		}
 		return carsDto;
 	}
-
+//test
 	public List<CarDto> getAllSoldCars() {
 		List<Car> cars = carRepository.findAll();
 		List<CarDto> soldCarsDto = new ArrayList<>();
